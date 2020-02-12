@@ -1,0 +1,16 @@
+{
+  "tracks": {
+    "road": {
+      "0": {
+        "nameShort": "Monza",
+        "nameLong": "Autodromo Nazionale di Monza",
+        "country": "Italy"
+      },
+      "1": {
+        "nameShort": "Spa",
+        "nameLong": "Spa Francorchamps",
+        "country": "Belgium"
+      }
+    }
+  }
+}
