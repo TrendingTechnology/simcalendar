@@ -17,8 +17,8 @@ class AddRace extends Component {
   state = {
     date: new Date(),
     eventName: '',
-    sim: '',
-    eventTrack:'',
+    sim: 'none',
+    eventTrack:'none',
     status: null
   }
   onChangeEvent = e => this.setState({ eventName: e.target.value })
@@ -66,23 +66,25 @@ class AddRace extends Component {
         <SelectField
           label="What sim?"
           onChange={this.onChangeSim}
+          value={this.state.sim}
         >
-          <option value="none" selected>Please select</option>
-          <option value="ac">Assetto Corsa</option>
-          <option value="acc">Assetto Corsa Competizione</option>
-          <option value="rf2">rFactor 2</option>
-          <option value="rre">Raceroom</option>
-          <option value="auto">Automobilista</option>
-          <option value="pc2">Project Cars 2</option>
+          <option key="none" value="none">Please select</option>
+          <option key="ac" value="ac">Assetto Corsa</option>
+          <option key="acc" value="acc">Assetto Corsa Competizione</option>
+          <option key="rf2" value="rf2">rFactor 2</option>
+          <option key="rre" value="rre">Raceroom</option>
+          <option key="automo" value="automo">Automobilista</option>
+          <option key="pc2" value="pc2">Project Cars 2</option>
         </SelectField>
 
         <SelectField
           label="What Track?"
           description="Hopefully not Monza"
           onChange={this.onChangeTrack}
+          value={this.state.eventTrack}
         >
-          <option value="none" selected>Please select</option>
-          {tracks.map(t => <TracksOption nameShort={t.nameShort} nameLong={t.nameLong} />)}
+          <option value="none">Please select</option>
+          {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameShort} nameLong={t.nameLong} />)}
 
         </SelectField>
 
