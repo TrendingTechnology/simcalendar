@@ -27,8 +27,6 @@ class AddRace extends Component {
   onChangeDate = date => this.setState({ date })
 
   onCreateEvent = (e) => {
-    // console.log(this.state.date.toString())
-    // let that = this
     let newRaceKey = firebase.database().ref('/races/').push().key
     firebase.database().ref(`/races/${newRaceKey}/`).set({
       name: this.state.eventName,
@@ -60,7 +58,6 @@ class AddRace extends Component {
 
         <TextInputField
           label="Event name"
-          // placeholder="Try not to use Monza"
           onChange={this.onChangeEvent}
         />
         <SelectField
