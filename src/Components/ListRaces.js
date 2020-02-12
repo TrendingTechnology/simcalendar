@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'evergreen-ui'
+import { Table, Combobox } from 'evergreen-ui'
 
 function TableRow(props) {
   const date = new Date(props.date)
@@ -15,10 +15,51 @@ function TableRow(props) {
 
 class ListRaces extends Component {
 
-  render() {
-    const races = Object.entries(this.props.data)
+  state = {
+    races: Object.entries(this.props.data),
+    tracks: this.props.tracks,
+    selectedTracks: this.props.tracks
+  }
 
+  filterTracks = (track) => {
+    if (track === 'All tracks') {
+        this.setState({selectedTracks: this.props.tracks})
+    } else {
+        this.setState({selectedTracks: track})
+    }
+
+  }
+
+  componentDidMount() {
+    let tracks = this.state.tracks
+    console.log(tracks);
+    tracks.unshift('All tracks')
+    console.log(tracks);
+    // this.setState({tracks})
+  }
+
+  render() {
+    let {races, tracks, selectedTracks} = this.state
+
+    // filter data
+    races = races.filter(function(race) {
+      return selectedTracks.includes(race[1].track)
+    })
+
+    console.log(races);
     return (
+      <>
+      <div className="filters">
+        <Combobox
+          items={tracks}
+          onChange={this.filterTracks}
+          placeholder="All tracks"
+          autocompleteProps={{
+            // Used for the title in the autocomplete.
+            title: 'Tracks'
+          }}
+        />
+      </div>
       <Table>
         <Table.Head>
           <Table.SearchHeaderCell />
@@ -44,6 +85,7 @@ class ListRaces extends Component {
           ))}
         </Table.Body>
       </Table>
+      </>
     )
   }
 }

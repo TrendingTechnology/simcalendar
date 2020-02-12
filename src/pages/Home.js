@@ -9,7 +9,17 @@ class Home extends Component {
   state = {
     tracks: [],
     races: [],
+    tracksSanitised: [],
     dataReady: false
+  }
+
+  extractRaces = (tracks) => {
+    const tracksSanitised = []
+    for (const track in tracks) {
+      tracksSanitised.push(tracks[track].nameLong)
+    }
+    this.setState({tracksSanitised, dataReady: true})
+
   }
 
   loadData = () => {
@@ -22,10 +32,10 @@ class Home extends Component {
         let data = snapshot.val()
         that.setState({
           tracks: data.tracks.road,
-          races: data.races,
-          dataReady: true
+          races: data.races
         }, () => {
           console.log("Data is ready 🏁");
+          that.extractRaces(that.state.tracks)
         })
       }
     });
@@ -36,12 +46,12 @@ class Home extends Component {
   }
 
   render() {
-    const { tracks, races, dataReady } = this.state;
+    const { tracks, races, dataReady, tracksSanitised } = this.state;
 
     return (
       <div>
         <h2>List</h2>
-        {dataReady ? <ListRaces data={races} /> : <Loading/>}
+        {dataReady ? <ListRaces data={races} tracks={tracksSanitised} /> : <Loading/>}
 
 
         {dataReady ? <AddRace data={tracks} /> : <Loading/>}

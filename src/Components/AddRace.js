@@ -81,7 +81,7 @@ class AddRace extends Component {
           value={this.state.eventTrack}
         >
           <option value="none">Please select</option>
-          {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameShort} nameLong={t.nameLong} />)}
+          {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameLong} nameLong={t.nameLong} />)}
 
         </SelectField>
 
