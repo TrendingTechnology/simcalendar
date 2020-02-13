@@ -19,11 +19,15 @@ class AddRace extends Component {
     eventName: '',
     sim: 'none',
     eventTrack:'none',
-    status: null
+    url: '',
+    durataion: '',
+    status: null,
   }
   onChangeEvent = e => this.setState({ eventName: e.target.value })
+  onChangeURL = e => this.setState({ url: e.target.value })
   onChangeSim = e => this.setState({ sim: e.target.value })
   onChangeTrack = e => this.setState({ eventTrack: e.target.value })
+  onChangeDuration = e => this.setState({ duration: e.target.value })
   onChangeDate = date => this.setState({ date })
 
   onCreateEvent = (e) => {
@@ -60,6 +64,10 @@ class AddRace extends Component {
           label="Event name"
           onChange={this.onChangeEvent}
         />
+        <TextInputField
+          label="Event URL"
+          onChange={this.onChangeURL}
+        />
         <SelectField
           label="What sim?"
           onChange={this.onChangeSim}
@@ -84,7 +92,7 @@ class AddRace extends Component {
           {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameLong} nameLong={t.nameLong} />)}
 
         </SelectField>
-
+        <label>Race date</label>
         <DatePicker
           selected={this.state.date}
           onChange={this.onChangeDate}
@@ -92,6 +100,16 @@ class AddRace extends Component {
         />
 
         <br /><br /><br />
+
+        <label>Start time</label>
+        <p>Please state when drivers MUST be on the server (e.g. start of qualifying)</p>
+
+        <TextInputField
+          label="Race duration"
+          onChange={this.onChangeDuration}
+        />
+
+
 
         { this.state.status ? <Success /> : null }
 
