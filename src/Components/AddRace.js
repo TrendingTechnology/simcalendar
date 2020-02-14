@@ -1,122 +1,218 @@
-import React, { Component } from 'react'
-import { Button, TextInputField, SelectField, Alert } from 'evergreen-ui'
-// import Calendar from 'react-calendar'
+import React, { useState } from 'react'
 import * as firebase from 'firebase/app'
 import 'firebase/database'
-import DatePicker, { registerLocale } from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
-import {enGB} from 'date-fns/esm/locale'
-registerLocale('enGB', enGB)
+import { Formik, withFormik } from 'formik';
+import * as Yup from 'yup';
+import Error from './Error'
 
 function TracksOption(props) {
   return <option value={props.nameShort}>{props.nameLong}</option>
 }
 
-class AddRace extends Component {
+const ValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Too Short!")
+    .max(255, "Too Long!")
+    .required("Required"),
+  url: Yup.string().url("Must be a valid URL").required("Required"),
+  cars: Yup.string().required("Required"),
+  duration: Yup.number()
+    .integer()
+    .positive(),
+  timezone: Yup.number().integer()
+});
 
-  state = {
-    date: new Date(),
-    eventName: '',
-    sim: 'none',
-    eventTrack:'none',
-    url: '',
-    durataion: '',
-    status: null,
-  }
-  onChangeEvent = e => this.setState({ eventName: e.target.value })
-  onChangeURL = e => this.setState({ url: e.target.value })
-  onChangeSim = e => this.setState({ sim: e.target.value })
-  onChangeTrack = e => this.setState({ eventTrack: e.target.value })
-  onChangeDuration = e => this.setState({ duration: e.target.value })
-  onChangeDate = date => this.setState({ date })
+const AddRace = (props) => {
 
-  onCreateEvent = (e) => {
-    let newRaceKey = firebase.database().ref('/races/').push().key
-    firebase.database().ref(`/races/${newRaceKey}/`).set({
-      name: this.state.eventName,
-      sim: this.state.sim,
-      track: this.state.eventTrack,
-      date: this.state.date.getTime(),
-    }, function(error) {
-      if (error) {
-        console.log("Well that was fucked");
-      } else {
-        console.log("yay!");
-      }
-    });
-  };
+  // const [status, setBananas] = useState()
 
+  const tracks = props.data;
 
-  render() {
-    const tracks = this.props.data;
-
-    const Success = <Alert
-      intent="success"
-      title="Race created"
-      marginBottom={16}
-    />
+  const Success = <p>Race created</p>
 
     return (
     <div className="create-race">
       <h2>Create a race</h2>
+      <Formik
+        initialValues={{
+          name: '',
+          cars: '',
+          url: '',
+          sim: 'none',
+          track: 'none',
+          duration: 0,
+          time: '20:45',
+          timezone: new Date().getTimezoneOffset(),
+          date: new Date().toISOString().split('T')[0],
+        }}
+        validationSchema={ValidationSchema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          setSubmitting(false);
+          setTimeout(() => {
+            resetForm();
+            // setBananas("yay!");
+            let newRaceKey = firebase.database().ref('/races/').push().key
+            firebase.database().ref(`/races/${newRaceKey}/`).set({
+              name: values.name,
+              cars: values.cars,
+              url: values.url,
+              sim: values.sim,
+              track: values.track,
+              date: new Date(values.date).getTime(),
+              time: values.time,
+              timezone: values.timezone,
+              duration: values.duration
+            }, function(error) {
+              if (error) {
+                alert("Well that was fucked");
+              } else {
+                alert("done");
+              }
+            });
+            setSubmitting(false);
+          }, 500);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          /* and other goodies */
+        }) => (
 
-        <TextInputField
-          label="Event name"
-          onChange={this.onChangeEvent}
-        />
-        <TextInputField
-          label="Event URL"
-          onChange={this.onChangeURL}
-        />
-        <SelectField
-          label="What sim?"
-          onChange={this.onChangeSim}
-          value={this.state.sim}
-        >
-          <option key="none" value="none">Please select</option>
-          <option key="ac" value="ac">Assetto Corsa</option>
-          <option key="acc" value="acc">Assetto Corsa Competizione</option>
-          <option key="rf2" value="rf2">rFactor 2</option>
-          <option key="rre" value="rre">Raceroom</option>
-          <option key="automo" value="automo">Automobilista</option>
-          <option key="pc2" value="pc2">Project Cars 2</option>
-        </SelectField>
+      <form onSubmit={handleSubmit}>
+        {JSON.stringify(values)}
+        <ul>
+          <li>
+            <label htmlFor="name">Event name</label>
+            <input
+              type="text"
+              id="name"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.name}
+              className={touched.name && errors.name ? "has-error" : null}
+            />
+            <Error touched={touched.name} message={errors.name} />
+          </li>
+          <li>
+            <label htmlFor="cars">Cars</label>
+            <p className="form-description">E.g. GTE + LMP2, Skip Barber, DTM, etc.</p>
+            <input
+              type="text"
+              id="cars"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.cars}
+              className={touched.cars && errors.cars ? "has-error" : null}
+            />
+            <Error touched={touched.cars} message={errors.cars} />
+          </li>
+          <li>
+            <label htmlFor="url">Event link</label>
+            <p className="form-description">Where people can learn more about it and sign up</p>
+            <input
+              type="text"
+              id="url"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.url}
+              className={touched.url && errors.url ? "has-error" : null}
+            />
+            <Error touched={touched.url} message={errors.url} />
+          </li>
+          <li>
+            <label htmlFor="sim">Simulator</label>
+            <select
+              id="sim"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.sim}
+            >
+              <option key="none" value="none">Please select</option>
+              <option key="ac" value="ac">Assetto Corsa</option>
+              <option key="acc" value="acc">Assetto Corsa Competizione</option>
+              <option key="rf2" value="rf2">rFactor 2</option>
+              <option key="rre" value="rre">Raceroom</option>
+              <option key="automo" value="automo">Automobilista</option>
+              <option key="pc2" value="pc2">Project Cars 2</option>
+            </select>
+          </li>
+          <li>
+            <label htmlFor="track">Track</label>
+            <p className="form-description">Hopefully not Monza.</p>
+            <select
+              id="track"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.track}
+            >
+              <option key="none" value="none">Please select</option>
+              {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameLong} nameLong={t.nameLong} />)}
+            </select>
+          </li>
+          <li>
+            <label htmlFor="date">Race date</label>
+            <input
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.date}
+              id="date"
+              type="date"
+            />
+          </li>
+          <li>
+            <label htmlFor="time">Start time</label>
+            <p className="form-description">Please state when drivers MUST be on the server (e.g. start of qualifying)</p>
+            <input
+              type="time"
+              id="time"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.time}
+            />
+          </li>
+          <li>
+            <label htmlFor="timezone">Time zone difference</label>
+            <p className="form-description">In minutes, from your local time to UTC. For example: GMT would be 0, EST (-5) would be -300</p>
+            <input
+              type="text"
+              id="timezone"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.timezone}
+              className={touched.timezone && errors.timezone ? "has-error" : null}
+            />
+            <Error touched={touched.timezone} message={errors.timezone} />
+          </li>
+          <li>
+            <label htmlFor="duration">Race duration</label>
+            <p className="form-description">Just the race. If it's more than one, enter the total amount of time for all races. Do not add qualifying or practice time. </p>
+            <input
+              type="number"
+              id="duration"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.duration}
+              className={touched.duration && errors.duration ? "has-error" : null}
+            />
+            <Error touched={touched.duration} message={errors.duration} />
+          </li>
+        </ul>
 
-        <SelectField
-          label="What Track?"
-          description="Hopefully not Monza"
-          onChange={this.onChangeTrack}
-          value={this.state.eventTrack}
-        >
-          <option value="none">Please select</option>
-          {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameLong} nameLong={t.nameLong} />)}
+        { /* status ? <Success /> : null */ }
 
-        </SelectField>
-        <label>Race date</label>
-        <DatePicker
-          selected={this.state.date}
-          onChange={this.onChangeDate}
-          locale='enGB'
-        />
-
-        <br /><br /><br />
-
-        <label>Start time</label>
-        <p>Please state when drivers MUST be on the server (e.g. start of qualifying)</p>
-
-        <TextInputField
-          label="Race duration"
-          onChange={this.onChangeDuration}
-        />
-
-
-
-        { this.state.status ? <Success /> : null }
-
-        <Button appearance="primary" onClick={this.onCreateEvent}>Add race</Button>
+        <input type="submit" disabled={isSubmitting} value="Add race" />
+        </form>
+        )}
+        </Formik>
       </div>
     )
-  }
+  // }
 }
 
 export default AddRace;

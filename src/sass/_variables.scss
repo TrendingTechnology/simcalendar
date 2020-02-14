@@ -1,5 +1,5 @@
 // CONFIG
-$fontstack: "Roboto", helvetica, arial, sans-serif;
+$fontstack: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 
 // spacing
@@ -17,7 +17,8 @@ $screen-large: 1140px;
 $border-radius: 3px;
 
 // Colors
-$colour-base: #333;
+$background: #292b2d;
+$colour-base: #f2f3f4;
 $colour-accent: tomato;
 $colour-gray-300: #c9c9c9;
 $colour-gray-100: #f2f3f4;

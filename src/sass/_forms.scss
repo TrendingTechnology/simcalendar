@@ -1,0 +1,65 @@
+input,
+input[type="text"],
+input[type="submit"],
+input[type="email"],
+input[type="number"],
+input[type="button"],
+textarea {
+  -webkit-appearance: none;
+  background-color: #f2f3f4;
+  box-shadow: rgba(67, 90, 111, 0.3) 0px 0px 0px 1px inset,
+              rgba(67, 90, 111, 0.14) 0px 1px 2px inset;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  height: 36px;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  min-width: 280px;
+  padding: 0 $baseline/2;
+
+  &.has-error {
+    border: 1px solid $colour-accent;
+    background: #fdeae7;
+
+  }
+}
+
+input[type="submit"] {
+  min-width: 0;
+  background: $colour-accent;
+  color: $colour-base;
+  font-weight: 500;
+  padding: 0 $baseline*2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: darken($colour-accent, 10);
+  }
+}
+
+form {
+  li {
+    margin-bottom: $baseline*2;
+  }
+}
+
+label {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.form-description {
+  font-size: 1.2rem;
+  color: $colour-gray-300;
+  margin-bottom: 0;
+}
+
+.form-message {
+  font-size: 1.4rem;
+  &.invalid {
+    color: $colour-accent
+  }
+}

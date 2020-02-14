@@ -1,7 +1,16 @@
 @import "sass/reset";
 @import "sass/variables";
 @import "sass/typography";
+@import "sass/forms";
 
+
+html, body {
+  background: $background;
+}
+
+body {
+  padding: $baseline;
+}
 .filters {
   background: #ccc;
   padding: $baseline/2;

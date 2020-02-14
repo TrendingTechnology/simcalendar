@@ -2,6 +2,7 @@
 body, html {
   font-family: $fontstack;
   font-size: 62.5%;
+  color: $colour-base;
 }
 
 p, li, td {
@@ -33,7 +34,7 @@ h3 {
 }
 
 a {
-  color: blue;
+  color: $colour-accent;
   text-decoration: underline;
 
   &:hover {
