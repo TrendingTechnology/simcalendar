@@ -85,7 +85,6 @@ const AddRace = (props) => {
         }) => (
 
       <form onSubmit={handleSubmit}>
-        {JSON.stringify(values)}
         <ul>
           <li>
             <label htmlFor="name">Event name</label>
@@ -139,6 +138,7 @@ const AddRace = (props) => {
               <option key="rf2" value="rf2">rFactor 2</option>
               <option key="rre" value="rre">Raceroom</option>
               <option key="automo" value="automo">Automobilista</option>
+              <option key="automo2" value="automo2">Automobilista 2</option>
               <option key="pc2" value="pc2">Project Cars 2</option>
             </select>
           </li>
@@ -152,7 +152,7 @@ const AddRace = (props) => {
               value={values.track}
             >
               <option key="none" value="none">Please select</option>
-              {tracks.map(t => <TracksOption key={t.nameShort} nameShort={t.nameLong} nameLong={t.nameLong} />)}
+              {tracks.map(t => <TracksOption key={Math.random()} nameShort={t.nameLong} nameLong={t.nameLong} />)}
             </select>
           </li>
           <li>
@@ -209,9 +209,9 @@ const AddRace = (props) => {
         <input type="submit" disabled={isSubmitting} value="Add race" />
         </form>
         )}
-        </Formik>
-      </div>
-    )
+      </Formik>
+    </div>
+  )
   // }
 }
 
