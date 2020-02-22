@@ -2,6 +2,7 @@
 @import "sass/variables";
 @import "sass/typography";
 @import "sass/forms";
+@import "sass/tables";
 
 
 html, body {
@@ -12,6 +13,8 @@ body {
   padding: $baseline;
 }
 .filters {
-  background: #ccc;
-  padding: $baseline/2;
+  padding: $baseline/2 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }

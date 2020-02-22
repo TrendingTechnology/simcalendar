@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as firebase from 'firebase/app'
 import 'firebase/database'
-import { Formik, withFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Error from './Error'
-
-function TracksOption(props) {
-  return <option value={props.nameShort}>{props.nameLong}</option>
-}
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -24,11 +20,9 @@ const ValidationSchema = Yup.object().shape({
 
 const AddRace = (props) => {
 
-  // const [status, setBananas] = useState()
-
-  const tracks = props.data;
-
-  const Success = <p>Race created</p>
+  const tracks = props.tracks
+  const longNamesArray = tracks.longNamesArray
+  // const Success = <p>Race created</p>
 
     return (
     <div className="create-race">
@@ -137,6 +131,7 @@ const AddRace = (props) => {
               <option key="acc" value="acc">Assetto Corsa Competizione</option>
               <option key="rf2" value="rf2">rFactor 2</option>
               <option key="rre" value="rre">Raceroom</option>
+              <option key="ir" value="ir">iRacing</option>
               <option key="automo" value="automo">Automobilista</option>
               <option key="automo2" value="automo2">Automobilista 2</option>
               <option key="pc2" value="pc2">Project Cars 2</option>
@@ -152,7 +147,7 @@ const AddRace = (props) => {
               value={values.track}
             >
               <option key="none" value="none">Please select</option>
-              {tracks.map(t => <TracksOption key={Math.random()} nameShort={t.nameLong} nameLong={t.nameLong} />)}
+              {longNamesArray.map(t => <option key={Math.random()} value={tracks.keyByLongName(t)}>{t}</option>)}
             </select>
           </li>
           <li>

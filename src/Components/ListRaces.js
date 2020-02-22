@@ -1,90 +1,103 @@
 import React, { Component } from 'react'
-import { Table, Combobox } from 'evergreen-ui'
-
-function TableRow(props) {
-  const date = new Date(props.date)
-  return (
-    <Table.Row key={props.name}>
-      <Table.TextCell>{props.name}</Table.TextCell>
-      <Table.TextCell>{props.sim}</Table.TextCell>
-      <Table.TextCell>{date.toDateString()}</Table.TextCell>
-      <Table.TextCell>{props.track}</Table.TextCell>
-    </Table.Row>
-  )
-}
+import { Combobox } from 'evergreen-ui'
+import TableRow from './TableRow'
 
 class ListRaces extends Component {
-
   state = {
     races: Object.entries(this.props.data),
+    sims: this.props.sims,
+    selectedSims: this.props.sims.keysArray,
     tracks: this.props.tracks,
-    selectedTracks: this.props.tracks
+    selectedTracks: this.props.tracks.keysArray,
   }
 
-  filterTracks = (track) => {
-    if (track === 'All tracks') {
-        this.setState({selectedTracks: this.props.tracks})
+  filterTracks = (longName) => {
+    if (longName === 'All tracks') {
+        this.setState({selectedTracks: this.props.tracks.keysArray})
     } else {
-        this.setState({selectedTracks: track})
+        const selectedTracks = this.props.tracks.keyByLongName(longName)
+        this.setState({selectedTracks})
     }
-
   }
 
-  componentDidMount() {
-    let tracks = this.state.tracks
-    console.log(tracks);
-    tracks.unshift('All tracks')
-    console.log(tracks);
-    // this.setState({tracks})
+  filterSims = (longName) => {
+    if (longName === 'All sims') {
+        this.setState({selectedSims: this.props.sims.keysArray})
+    } else {
+        const selectedSims = this.props.sims.keyByLongName(longName)
+        this.setState({selectedSims})
+    }
   }
 
   render() {
-    let {races, tracks, selectedTracks} = this.state
+    let {races, tracks, sims, selectedTracks, selectedSims} = this.state
 
-    // filter data
+    const comboBoxTrackList = tracks.longNamesArray
+    comboBoxTrackList.unshift('All tracks')
+
+    const comboBoxSimList = sims.longNamesArray
+    comboBoxSimList.unshift('All sims')
+
+    // filter data ==================================
     races = races.filter(function(race) {
       return selectedTracks.includes(race[1].track)
     })
 
-    console.log(races);
+    races = races.filter(function(race) {
+      return selectedSims.includes(race[1].sim)
+    })
+
     return (
       <>
       <div className="filters">
         <Combobox
-          items={tracks}
-          onChange={this.filterTracks}
-          placeholder="All tracks"
+          items={comboBoxSimList}
+          onChange={this.filterSims}
+          placeholder="All sims"
           autocompleteProps={{
             // Used for the title in the autocomplete.
-            title: 'Tracks'
+            title: 'Sims'
           }}
         />
+        <Combobox
+            items={comboBoxTrackList}
+            onChange={this.filterTracks}
+            placeholder="All tracks"
+            autocompleteProps={{
+              // Used for the title in the autocomplete.
+              title: 'Tracks'
+            }}
+          />
       </div>
-      <Table>
-        <Table.Head>
-          <Table.SearchHeaderCell />
-          <Table.TextHeaderCell>
-            Sim
-          </Table.TextHeaderCell>
-          <Table.TextHeaderCell>
-            When
-          </Table.TextHeaderCell>
-          <Table.TextHeaderCell>
-            Track
-          </Table.TextHeaderCell>
-        </Table.Head>
-        <Table.Body>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Sim</th>
+            <th>Track</th>
+            <th>Race duration</th>
+            <th>When</th>
+            <th>Start time</th>
+          </tr>
+        </thead>
+        <tbody>
           {races.map(race => (
             <TableRow
               key={race[1].name}
               name={race[1].name}
               sim={race[1].sim}
+              sims={this.state.sims}
               track={race[1].track}
+              tracks={this.state.tracks}
               date={race[1].date}
+              url={race[1].url}
+              cars={race[1].cars}
+              duration={race[1].duration}
+              time={race[1].time}
             />
           ))}
-        </Table.Body>
-      </Table>
+        </tbody>
+      </table>
       </>
     )
   }

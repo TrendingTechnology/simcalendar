@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+th, td {
+  font-size: 1.6rem;
+  padding: $baseline/2 $baseline/4;
+}
+
+th {
+  background: #424548;
+  // color: #333;
+  text-align: left;
+  font-weight: 500;
+}

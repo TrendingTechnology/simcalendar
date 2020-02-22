@@ -1,0 +1,19 @@
+{
+  "tracks": {
+    "monza": {
+      "name": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "type": "road"
+    },
+    "spa": {
+      "name": "Spa Francorchamps",
+      "country": "Belgium",
+      "type": "road"
+    },
+    "sebring": {
+      "name": "Sebring",
+      "country": "USA",
+      "type": "road"
+    }
+  }
+}
