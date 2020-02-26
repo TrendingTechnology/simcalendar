@@ -17,7 +17,24 @@ class Home extends Component {
     dataReady: false,
   }
 
-  loadData = () => {
+  filterOldRaces = (data) => {
+      let today = new Date().setHours(0,0,0,0)
+      const futureRaces = []
+      const races = Object.entries(data.races)
+      races.filter((race) => {
+        if (today - race[1].date <= 0) {
+          futureRaces.push(race)
+        }
+      })
+      this.setState({
+        races: futureRaces,
+        dataReady: true
+      }, () => {
+        console.log("Data is ready 🏁");
+      })
+  }
+
+  componentDidMount() {
     // get the races
     let that = this
     firebase.database().ref('/').on('value', function(snapshot) {
@@ -25,19 +42,9 @@ class Home extends Component {
       if (!snapshot.val()) {
         console.log("there is no data!!! 😱");
       } else { // some races are there
-        let data = snapshot.val()
-        that.setState({
-          races: data.races,
-          dataReady: true
-        }, () => {
-          console.log("Data is ready 🏁");
-        })
+        that.filterOldRaces(snapshot.val())
       }
     });
-  }
-
-  componentDidMount() {
-    this.loadData()
   }
 
   render() {

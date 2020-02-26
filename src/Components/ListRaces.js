@@ -4,7 +4,7 @@ import TableRow from './TableRow'
 
 class ListRaces extends Component {
   state = {
-    races: Object.entries(this.props.data),
+    races: this.props.data,
     sims: this.props.sims,
     selectedSims: this.props.sims.keysArray,
     tracks: this.props.tracks,
