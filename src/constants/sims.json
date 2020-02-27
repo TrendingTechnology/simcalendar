@@ -1,13 +1,40 @@
 {
   "sims": {
-    "rf2": "rFactor 2",
-    "ac": "Assetto Corsa",
-    "acc": "Assetto Corsa Competizione",
-    "ir": "iRacing",
-    "rre": "RaceRoom",
-    "automo": "Automobilista",
-    "automo2": "Automobilista 2",
-    "pc2": "Project Cars 2",
-    "gtsport": "GT Sport"
+    "rf2": {
+      "name": "rFactor 2",
+      "logo": "/sim-logos/logo_rf2_blue-red.png"
+      },
+    "ac": {
+      "name": "Assetto Corsa",
+      "logo": "/sim-logos/ac-logo.png"
+    },
+    "acc": {
+      "name": "Assetto Corsa Competizione",
+      "logo": "/sim-logos/acc-logo.jpg"
+    },
+    "ir": {
+      "name": "iRacing",
+      "logo": "/sim-logos/iracing-logo.png"
+    },
+    "rre": {
+      "name": "RaceRoom",
+      "logo": "/sim-logos/rre-logo.jpg"
+    },
+    "automo": {
+      "name": "Automobilista",
+      "logo": "/sim-logos/automobilista.png"
+    },
+    "automo2": {
+      "name": "Automobilista 2",
+      "logo": "/sim-logos/automobilista2-logo.png"
+    },
+    "pc2": {
+      "name": "Project Cars 2",
+      "logo": "/sim-logos/pc2-logo.jpg"
+    },
+    "gtsport": {
+      "name": "GT Sport",
+      "logo": "/sim-logos/gtsport-logo.jpg"
+    }
   }
 }

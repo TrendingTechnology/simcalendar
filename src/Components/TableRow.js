@@ -9,7 +9,7 @@ export default function TableRow({name, cars, url, sim, sims, track, tracks, dur
         <em>{cars}</em><br />
         <a href={url} target="_blank" rel="nofollow noopener noreferrer">{url}</a>
       </td>
-      <td>{sims.longNameByKey(sim)}</td>
+      <td><img src={sims.logoByKey(sim)} alt={sims.longNameByKey(sim)} /></td>
       <td>{tracks.longNameByKey(track)}</td>
       <td>{duration}</td>
       <td>{newDate.toDateString()}</td>

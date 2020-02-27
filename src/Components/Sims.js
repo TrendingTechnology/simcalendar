@@ -7,7 +7,7 @@ class Sims {
   get longNamesArray() {
     const longNamesArray = []
     for (const sim in this.sims) {
-      longNamesArray.push(this.sims[sim])
+      longNamesArray.push(this.sims[sim].name)
     }
     return longNamesArray
   }
@@ -21,7 +21,7 @@ class Sims {
   }
 
   longNameByKey(key) {
-    return this.sims[key]
+    return this.sims[key].name
   }
 
   keyByLongName(longName) {
@@ -30,6 +30,10 @@ class Sims {
         return sim
       }
     }
+  }
+
+  logoByKey(key) {
+    return this.sims[key].logo
   }
 }
 
