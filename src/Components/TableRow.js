@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function TableRow({name, cars, url, sim, sims, track, tracks, duration, time, date}) {
+export default function TableRow({organiser, cars, url, sim, sims, track, tracks, duration, time, date}) {
   const newDate = new Date(date)
   return (
     <tr key={Math.random()}>
       <td>
-        {name}<br />
+        {organiser}<br />
         <em>{cars}</em><br />
         <a href={url} target="_blank" rel="nofollow noopener noreferrer">{url}</a>
       </td>

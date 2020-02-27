@@ -83,8 +83,7 @@ class ListRaces extends Component {
         <tbody>
           {races.map(race => (
             <TableRow
-              key={race[1].name}
-              name={race[1].name}
+              organiser={race[1].organiser}
               sim={race[1].sim}
               sims={this.state.sims}
               track={race[1].track}

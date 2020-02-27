@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import Error from './Error'
 
 const ValidationSchema = Yup.object().shape({
-  name: Yup.string()
+  organiser: Yup.string()
     .min(3, "Too Short!")
     .max(255, "Too Long!")
     .required("Required"),
@@ -29,6 +29,7 @@ const AddRaceForm = (props) => {
       <Formik
         initialValues={{
           name: '',
+          organiser: '',
           cars: '',
           url: '',
           sim: 'none',
@@ -43,10 +44,10 @@ const AddRaceForm = (props) => {
           setSubmitting(false);
           setTimeout(() => {
             resetForm();
-            // setBananas("yay!");
             let newRaceKey = firebase.database().ref('/races/').push().key
             firebase.database().ref(`/races/${newRaceKey}/`).set({
               name: values.name,
+              organiser: values.organiser,
               cars: values.cars,
               url: values.url,
               sim: values.sim,
@@ -79,6 +80,18 @@ const AddRaceForm = (props) => {
 
       <form onSubmit={handleSubmit}>
         <ul>
+          <li>
+            <label htmlFor="organiser">Event organiser</label>
+            <input
+              type="text"
+              id="organiser"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.organiser}
+              className={touched.organiser && errors.organiser ? "has-error" : null}
+            />
+            <Error touched={touched.organiser} message={errors.organiser} />
+          </li>
           <li>
             <label htmlFor="name">Event name</label>
             <input
