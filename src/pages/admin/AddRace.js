@@ -7,7 +7,7 @@ import AddRaceForm from '../../Components/AddRaceForm'
 
 class AddRace extends Component {
   state = {
-    tracks: new Tracks(tracks.tracks),
+    tracks: new Tracks(tracks),
     sims: new Sims(sims.sims),
   }
 

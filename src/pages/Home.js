@@ -10,7 +10,7 @@ import Sims from '../Components/Sims'
 
 class Home extends Component {
   state = {
-    tracks: new Tracks(tracks.tracks),
+    tracks: new Tracks(tracks),
     sims: new Sims(sims.sims),
     races: [],
     dataReady: false,
