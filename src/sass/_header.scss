@@ -1,0 +1,18 @@
+header {
+  background: #343739;
+  border-bottom: 1px solid #3D4144;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: $baseline;
+
+  h1 {
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  p {
+    margin: $baseline/2 0 0 $baseline*2;
+
+  }
+}

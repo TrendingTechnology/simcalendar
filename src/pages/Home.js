@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/database'
-import AddRace from '../Components/AddRace'
 import Loading from '../Components/Loading'
 import ListRaces from '../Components/ListRaces'
 import sims from '../constants/sims.json'
@@ -52,9 +51,7 @@ class Home extends Component {
 
     return (
       <div>
-        <h2>List</h2>
         {dataReady ? <ListRaces sims={sims} data={races} tracks={tracks} /> : <Loading/>}
-        {dataReady ? <AddRace tracks={tracks} /> : <Loading/>}
       </div>
     )
   }

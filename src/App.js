@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.scss';
 
@@ -12,6 +11,7 @@ import * as firebase from 'firebase/app'
 import {firebaseConfig} from './constants/firebase'
 import Header from './Components/Header'
 import Home from './pages/Home'
+import AddRace from './pages/admin/AddRace'
 
 if(!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -23,7 +23,10 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Route exact path="/" component={Home}/>
+        <div className="wrapper">
+          <Route exact path="/" component={Home}/>
+          <Route path="/admin/add-race" component={AddRace}/>
+        </div>
       </Router>
     </div>
   );

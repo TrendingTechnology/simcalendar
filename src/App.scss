@@ -3,13 +3,14 @@
 @import "sass/typography";
 @import "sass/forms";
 @import "sass/tables";
+@import "sass/header";
 
 
 html, body {
   background: $background;
 }
 
-body {
+.wrapper {
   padding: $baseline;
 }
 .filters {

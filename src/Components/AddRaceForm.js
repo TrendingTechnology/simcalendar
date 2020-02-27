@@ -18,7 +18,7 @@ const ValidationSchema = Yup.object().shape({
   timezone: Yup.number().integer()
 });
 
-const AddRace = (props) => {
+const AddRaceForm = (props) => {
 
   const tracks = props.tracks
   const longNamesArray = tracks.longNamesArray
@@ -26,7 +26,6 @@ const AddRace = (props) => {
 
     return (
     <div className="create-race">
-      <h2>Create a race</h2>
       <Formik
         initialValues={{
           name: '',
@@ -207,7 +206,6 @@ const AddRace = (props) => {
       </Formik>
     </div>
   )
-  // }
 }
 
-export default AddRace;
+export default AddRaceForm;
