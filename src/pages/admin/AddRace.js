@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import sims from '../../constants/sims.json'
 import tracks from '../../constants/tracks.json'
-import Tracks from '../../Components/Tracks'
-import Sims from '../../Components/Sims'
+import Tracks from '../../Components/Utils/Tracks'
+import Sims from '../../Components/Utils/Sims'
 import AddRaceForm from '../../Components/AddRaceForm'
 
 class AddRace extends Component {

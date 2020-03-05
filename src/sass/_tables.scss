@@ -1,14 +1,95 @@
 table {
   width: 100%;
+  border-spacing: 0 $baseline;
+  border-collapse: inherit;
+  color: $main;
 }
 th, td {
   font-size: 1.6rem;
   padding: $baseline/2 $baseline/4;
 }
 
-th {
-  background: #424548;
-  // color: #333;
-  text-align: left;
-  font-weight: 500;
+thead {
+  display: none;
+}
+
+tr {
+  td {
+    background: $colour-gray-300;
+    vertical-align: middle;
+    padding: $baseline/2;
+  }
+
+  .list-sim {
+    background: white;
+    width: 120px;
+    text-align: center;
+    img {
+      max-width: 90px;
+    }
+  }
+  .list-date {
+    background: $colour-gray-200;
+    text-align: center;
+    width: 120px;
+
+    span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: $main;
+
+      &.month {
+        font-weight: 300;
+        color: #ccc;
+      }
+    }
+    em {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: bold;
+      font-style: normal;
+      color: $main;
+    }
+  }
+  .list-time {
+    background: $colour-gray-200;
+    font-size: 2rem;
+    width: 120px;
+
+    span {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+  }
+  .list-what {
+    font-weight: 300;
+    em {
+      display: block;
+      font-size: 2rem;
+      font-weight: 500;
+      font-style: normal;
+    }
+  }
+  .list-track {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .list-duration {
+    font-weight: 300;
+    font-size: 2rem;
+    width: 120px;
+  }
+
+  .list-link {
+    background: $colour-active;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.4rem;
+    width: 80px;
+    a {
+      color: $main;
+      text-decoration: none;
+    }
+  }
 }

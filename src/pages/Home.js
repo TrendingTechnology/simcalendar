@@ -5,8 +5,8 @@ import Loading from '../Components/Loading'
 import ListRaces from '../Components/ListRaces'
 import sims from '../constants/sims.json'
 import tracks from '../constants/tracks.json'
-import Tracks from '../Components/Tracks'
-import Sims from '../Components/Sims'
+import Tracks from '../Components/Utils/Tracks'
+import Sims from '../Components/Utils/Sims'
 
 class Home extends Component {
   state = {

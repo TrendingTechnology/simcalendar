@@ -72,12 +72,13 @@ class ListRaces extends Component {
       <table>
         <thead>
           <tr>
-            <th>Event</th>
             <th>Sim</th>
-            <th>Track</th>
-            <th>Race duration</th>
             <th>When</th>
             <th>Start time</th>
+            <th>Event</th>
+            <th>Track</th>
+            <th>Race duration</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
@@ -93,6 +94,7 @@ class ListRaces extends Component {
               cars={race[1].cars}
               duration={race[1].duration}
               time={race[1].time}
+              timezone={race[1].timezone}
             />
           ))}
         </tbody>
