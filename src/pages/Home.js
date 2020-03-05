@@ -25,6 +25,9 @@ class Home extends Component {
           futureRaces.push(race)
         }
       })
+
+      futureRaces.sort((a, b) => parseFloat(a[1].date) - parseFloat(b[1].date));
+
       this.setState({
         races: futureRaces,
         dataReady: true
