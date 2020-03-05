@@ -26,7 +26,7 @@ class Sims {
 
   keyByLongName(longName) {
     for (const sim in this.sims) {
-      if (longName === this.sims[sim]) {
+      if (longName === this.sims[sim].name) {
         return sim
       }
     }

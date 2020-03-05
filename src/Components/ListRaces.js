@@ -12,7 +12,7 @@ class ListRaces extends Component {
   }
 
   filterTracks = (longName) => {
-    if (longName === 'All tracks') {
+    if (longName === 'All tracks' || longName === null) {
         this.setState({selectedTracks: this.props.tracks.keysArray})
     } else {
         const selectedTracks = this.props.tracks.keyByLongName(longName)
@@ -21,10 +21,11 @@ class ListRaces extends Component {
   }
 
   filterSims = (longName) => {
-    if (longName === 'All sims') {
+    if (longName === 'All sims' || longName === null) {
         this.setState({selectedSims: this.props.sims.keysArray})
     } else {
         const selectedSims = this.props.sims.keyByLongName(longName)
+        console.log(selectedSims);
         this.setState({selectedSims})
     }
   }
