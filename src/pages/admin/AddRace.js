@@ -13,7 +13,7 @@ class AddRace extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <h2>Add new race</h2>
         <AddRaceForm tracks={this.state.tracks} />
       </div>

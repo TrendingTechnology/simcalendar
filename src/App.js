@@ -23,10 +23,8 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <div className="wrapper">
           <Route exact path="/" component={Home}/>
           <Route path="/admin/add-race" component={AddRace}/>
-        </div>
       </Router>
     </div>
   );

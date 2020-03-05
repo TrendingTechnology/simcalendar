@@ -53,9 +53,14 @@ class Home extends Component {
     const { tracks, races, dataReady, sims } = this.state;
 
     return (
-      <div>
+      <>
+      <div className="top">
+        <h2>Find your next sim race</h2>
+      </div>
+      <div className="wrapper">
         {dataReady ? <ListRaces sims={sims} data={races} tracks={tracks} /> : <Loading/>}
       </div>
+      </>
     )
   }
 }
