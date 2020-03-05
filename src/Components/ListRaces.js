@@ -49,10 +49,11 @@ class ListRaces extends Component {
     })
 
     return (
-      <>
+      <div className="list-races">
       <div className="filters">
+        <h3>Filters</h3>
         <Combobox
-          items={comboBoxSimList}
+          items={comboBoxSimList}  
           onChange={this.filterSims}
           placeholder="All sims"
           autocompleteProps={{
@@ -70,37 +71,39 @@ class ListRaces extends Component {
             }}
           />
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Sim</th>
-            <th>When</th>
-            <th>Start time</th>
-            <th>Event</th>
-            <th>Track</th>
-            <th>Race duration</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {races.map(race => (
-            <TableRow
-              organiser={race[1].organiser}
-              sim={race[1].sim}
-              sims={this.state.sims}
-              track={race[1].track}
-              tracks={this.state.tracks}
-              date={race[1].date}
-              url={race[1].url}
-              cars={race[1].cars}
-              duration={race[1].duration}
-              time={race[1].time}
-              timezone={race[1].timezone}
-            />
-          ))}
-        </tbody>
-      </table>
-      </>
+      <div className="races">
+        <table>
+          <thead>
+            <tr>
+              <th>Sim</th>
+              <th>When</th>
+              <th>Start time</th>
+              <th>Event</th>
+              <th>Track</th>
+              <th>Race duration</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {races.map(race => (
+              <TableRow
+                organiser={race[1].organiser}
+                sim={race[1].sim}
+                sims={this.state.sims}
+                track={race[1].track}
+                tracks={this.state.tracks}
+                date={race[1].date}
+                url={race[1].url}
+                cars={race[1].cars}
+                duration={race[1].duration}
+                time={race[1].time}
+                timezone={race[1].timezone}
+              />
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
     )
   }
 }
