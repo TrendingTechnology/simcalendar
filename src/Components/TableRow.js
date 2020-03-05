@@ -10,7 +10,7 @@ export default function TableRow({organiser, cars, url, sim, sims, track, tracks
       <td className="list-sim"><img src={sims.logoByKey(sim)} alt={sims.longNameByKey(sim)} /></td>
       <td className="list-date">
         <span>{dateUtils.getDay(newDate.getDay())}</span>
-        <em>{newDate.getDay()}</em>
+        <em>{newDate.getDate()}</em>
         <span className="month">{dateUtils.getMonth(newDate.getMonth())}</span>
       </td>
       <td className="list-time">{time} <span>{dateUtils.getTimezone(timezone)}</span></td>
