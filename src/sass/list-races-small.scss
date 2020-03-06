@@ -1,0 +1,75 @@
+.races-small {
+
+  a {
+    color: $main;
+    text-decoration: none;
+  }
+  li {
+    background: $colour-gray-300;
+    display: grid;
+    grid-template-columns: 63px 1fr 93px;
+    grid-template-rows: 56px 1fr 30px;
+    grid-template-areas:
+      "logo date time"
+      "what what what"
+      "organiser organiser organiser";
+
+      div {
+        padding: $baseline/2;
+        display: flex;
+        align-items: center;
+      }
+
+  }
+
+  .list-sim {
+    grid-area: logo;
+    background: #fff;
+
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .list-date {
+    grid-area: date;
+    background: $colour-gray-200;
+
+    em {
+      font-style: normal;
+      font-size: 2rem;
+      font-weight: bold;
+      padding-left: $baseline/2;
+      padding-right: $baseline/4;
+    }
+
+    span.month {
+      color: #666;
+      font-weight: 300;
+      font-size: 2rem;
+    }
+  }
+
+  .list-time {
+    grid-area: time;
+    background: $colour-gray-200;
+    font-size: 2rem;
+  }
+
+  .list-what {
+    grid-area: what;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  .list-organiser {
+    grid-area: organiser;
+    font-size: 1.6rem;
+    font-weight: 300;
+    padding: 0 $baseline/2 $baseline/2;
+  }
+}

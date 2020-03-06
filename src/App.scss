@@ -4,6 +4,7 @@
 @import "sass/forms";
 @import "sass/tables";
 @import "sass/header";
+@import "sass/list-races-small";
 
 
 html, body {
@@ -74,5 +75,7 @@ html, body {
   h2 {
     margin: 0;
     color: $main;
+    font-size: 5rem;
+    font-weight: 300;
   }
 }

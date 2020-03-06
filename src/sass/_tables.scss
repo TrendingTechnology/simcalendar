@@ -22,16 +22,17 @@ tr {
 
   .list-sim {
     background: white;
-    width: 120px;
+    // clip-path: polygon(0 0, 100% 0, 79% 100%, 0% 100%);
+    width: 80px;
     text-align: center;
     img {
-      max-width: 90px;
+      max-width: 100%;
     }
   }
   .list-date {
     background: $colour-gray-200;
     text-align: center;
-    width: 120px;
+    width: 68px;
 
     span {
       display: block;
@@ -78,7 +79,7 @@ tr {
   .list-duration {
     font-weight: 300;
     font-size: 2rem;
-    width: 120px;
+    width: 88px;
   }
 
   .list-link {
@@ -86,7 +87,7 @@ tr {
     text-transform: uppercase;
     text-align: center;
     font-size: 2.4rem;
-    width: 80px;
+    width: 66px;
     a {
       color: $main;
       text-decoration: none;
