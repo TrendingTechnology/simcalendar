@@ -6,7 +6,7 @@ export default function TableRow({organiser, cars, url, sim, sims, track, tracks
   const dateUtils = new Dates()
 
   return (
-    <tr key={Math.random()}>
+    <tr>
       <td className="list-sim"><img src={sims.logoByKey(sim)} alt={sims.longNameByKey(sim)} /></td>
       <td className="list-date">
         <span>{dateUtils.getDay(newDate.getDay())}</span>

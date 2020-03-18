@@ -110,6 +110,7 @@ class ListRaces extends Component {
                   duration={race[1].duration}
                   time={race[1].time}
                   timezone={race[1].timezone}
+                  key={Math.random()}
                 />
               ))}
             </tbody>
@@ -131,6 +132,7 @@ class ListRaces extends Component {
               duration={race[1].duration}
               time={race[1].time}
               timezone={race[1].timezone}
+              key={Math.random()}
             />
           ))}
           </ul>
