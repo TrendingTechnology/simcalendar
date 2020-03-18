@@ -1,8 +1,8 @@
 footer {
   p {
-    font-family: arial, sans-serif;
+    font-family: $systemstack;
     font-size: 1.4rem;
     text-align: center;
-    margin: $baseline*2 0;
+    margin: $baseline*4 0;
   }
 }
