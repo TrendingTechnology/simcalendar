@@ -2,10 +2,11 @@
 @import "sass/variables";
 @import "sass/typography";
 @import "sass/forms";
-@import "sass/tables";
+@import "sass/listRaces";
 @import "sass/header";
 @import "sass/list-races-small";
-
+@import "sass/admin";
+@import "sass/footer";
 
 html, body {
   background: $background;

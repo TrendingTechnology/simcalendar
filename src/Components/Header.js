@@ -1,14 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom'
+import { AuthContext } from "../pages/admin/Auth";
 
-function Header() {
-    return(
-      <header>
-        <h1>Sim Calendar</h1>
-        <p><Link to="/">View races</Link></p>
-        <p><Link to="/admin/add-race">Add race</Link></p>
-      </header>
-    )
+const Header = ({ component: RouteComponent, ...rest }) => {
+  const {currentUser} = useContext(AuthContext);
+
+
+  return(
+    <header>
+      <h1><Link to="/">Sim Calendar</Link></h1>
+      { currentUser ? (
+          <>
+          <p><Link to="/">View races</Link></p>
+          <p><Link to="/race-control/">Admin</Link></p>
+          </>
+        ) : (null)
+      }
+    </header>
+  )
 }
 
-export default Header;
+export default Header

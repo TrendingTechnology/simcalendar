@@ -4,6 +4,7 @@ import tracks from '../../constants/tracks.json'
 import Tracks from '../../Components/Utils/Tracks'
 import Sims from '../../Components/Utils/Sims'
 import AddRaceForm from '../../Components/AddRaceForm'
+import Menu from './components/Menu'
 
 class AddRace extends Component {
   state = {
@@ -14,8 +15,14 @@ class AddRace extends Component {
   render() {
     return (
       <div className="wrapper">
-        <h2>Add new race</h2>
-        <AddRaceForm tracks={this.state.tracks} />
+        <h1>Admin</h1>
+        <div className="admin">
+          <Menu />
+          <div className="admin-content">
+            <h2>Add new race</h2>
+            <AddRaceForm tracks={this.state.tracks} />
+          </div>
+        </div>
       </div>
     )
   }

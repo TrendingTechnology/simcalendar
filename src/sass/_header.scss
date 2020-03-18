@@ -10,6 +10,11 @@ header {
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 0;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
   }
   p {
     margin: $baseline/2 0 0 $baseline*2;

@@ -1,0 +1,27 @@
+.admin {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  grid-template-areas: "menu content";
+  grid-column-gap: $baseline*2;
+  margin-top: $baseline*2;
+}
+.admin-menu {
+  grid-area: menu;
+}
+
+.admin-content {
+  grid-area: content;
+}
+
+.admin-races {
+  table {
+    width: 100%;
+    border-spacing: 0 $baseline/2;
+    border-collapse: inherit;
+    // color: $main;
+  }
+  th, td {
+    font-size: 1.4rem;
+    padding: $baseline/2 $baseline/4;
+  }
+}
