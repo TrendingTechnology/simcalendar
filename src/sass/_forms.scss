@@ -26,6 +26,34 @@ textarea {
   }
 }
 
+input[type="checkbox"] {
+  min-width: 0;
+  width: auto;
+  height: auto;
+  padding: 0;
+  -webkit-appearance: checkbox;
+  border: 0;
+  box-shadow: none;
+}
+
+input[type="radio"] {
+  -webkit-appearance: radio;
+  width: auto;
+  border: 0;
+  box-shadow: none;
+  height: auto;
+  margin-top: $baseline;
+  margin-left: $baseline*2;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+textarea {
+  height: auto;
+}
+
 input[type="submit"] {
   min-width: 0;
   background: $colour-accent;
@@ -42,13 +70,27 @@ input[type="submit"] {
 
 form {
   li {
-    margin-bottom: $baseline*2;
+    margin-bottom: $baseline*1.5;
   }
 }
 
 label {
   display: block;
   font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: $baseline/2;
+
+  &.label-radio {
+    display: inline;
+    font-weight: normal;
+    margin-top: 0;
+  }
+}
+
+p.label {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: $baseline/2 0 0;
 }
 
 .form-description {
@@ -62,4 +104,5 @@ label {
   &.invalid {
     color: $colour-accent
   }
+  margin-bottom: 0;
 }

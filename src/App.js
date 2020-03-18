@@ -17,6 +17,7 @@ import SignInScreen from './pages/admin/SignInScreen'
 import {AuthProvider} from './pages/admin/Auth'
 import PrivateRoute from './pages/admin/PrivateRoute'
 import Footer from './Components/Footer'
+import ContactForm from './pages/ContactForm'
 
 if(!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -31,6 +32,7 @@ function App() {
           <Header />
             <Route exact path="/" component={Home}/>
             <Route exact path="/signin" component={SignInScreen}/>
+            <Route exact path="/contact" component={ContactForm}/>
             <PrivateRoute exact path="/race-control/" component={AdminIndex}/>
             <PrivateRoute exact path="/race-control/add-race" component={AddRace}/>
           <Footer/>

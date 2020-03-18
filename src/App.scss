@@ -7,6 +7,7 @@
 @import "sass/list-races-small";
 @import "sass/admin";
 @import "sass/footer";
+@import "sass/contact";
 
 html, body {
   background: $background;
@@ -78,5 +79,20 @@ html, body {
     color: $main;
     font-size: 5rem;
     font-weight: 300;
+  }
+}
+
+.home-contact {
+  background: white;
+  p {
+    padding: $baseline/2 0;
+    color: $main;
+    font-family: $systemstack;
+    text-align: center;
+    margin-bottom: 0;
+
+    a {
+
+    }
   }
 }

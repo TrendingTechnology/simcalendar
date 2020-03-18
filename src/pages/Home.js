@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/database'
+import { Link } from 'react-router-dom'
 import Loading from '../Components/Loading'
 import ListRaces from '../Components/ListRaces'
 import sims from '../constants/sims.json'
@@ -56,6 +57,9 @@ class Home extends Component {
       <>
       <div className="top">
         <h2>Find your next sim race</h2>
+      </div>
+      <div className="home-contact">
+        <p>Do you know a race that is not here? <Link to="/contact">Get in touch</Link> and I'll add it.</p>
       </div>
       <div className="wrapper">
         {dataReady ? <ListRaces sims={sims} data={races} tracks={tracks} /> : <Loading/>}
