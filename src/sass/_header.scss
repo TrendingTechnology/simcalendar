@@ -14,10 +14,18 @@ header {
     a {
       text-decoration: none;
       color: #fff;
+
+      span {
+        color: #ccc;
+
+        &:last-of-type {
+          color: $colour-active;
+        }
+      }
     }
   }
   p {
     margin: $baseline/2 0 0 $baseline*2;
-
+    font-family: $systemstack;
   }
 }

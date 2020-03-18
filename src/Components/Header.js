@@ -8,7 +8,7 @@ const Header = ({ component: RouteComponent, ...rest }) => {
 
   return(
     <header>
-      <h1><Link to="/">Sim Calendar</Link></h1>
+      <h1><Link to="/">Drive.<span>Race.</span><span>Win.</span></Link></h1>
       { currentUser ? (
           <>
           <p><Link to="/">View races</Link></p>
