@@ -4,7 +4,6 @@ import sims from '../../constants/sims.json'
 import tracks from '../../constants/tracks.json'
 import Tracks from '../../Components/Utils/Tracks'
 import Sims from '../../Components/Utils/Sims'
-
 import Menu from './components/Menu'
 import TableRow from './components/TableRow'
 class AdminIndex extends Component {
@@ -75,6 +74,7 @@ class AdminIndex extends Component {
                   <tbody>
                     {races.map(race => (
                       <TableRow
+                        id={race[0]}
                         organiser={race[1].organiser}
                         sim={race[1].sim}
                         sims={this.state.sims}

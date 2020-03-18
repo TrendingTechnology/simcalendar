@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import Error from '../Components/Error'
+import Error from './admin/components/Error'
 import axios from 'axios'
 
 const API_PATH = "http://localhost:8888/simcalendar/api/contact/"

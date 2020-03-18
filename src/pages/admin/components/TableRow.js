@@ -1,7 +1,8 @@
 import React from 'react';
 import Dates from '../../../Components/Utils/Dates'
+import { Link } from 'react-router-dom'
 
-export default function TableRow({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone}) {
+export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone}) {
   const newDate = new Date(date)
   const dateUtils = new Dates()
 
@@ -12,13 +13,13 @@ export default function TableRow({organiser, cars, url, sim, sims, track, tracks
       </td>
       <td className="list-time">{time} <span>{dateUtils.getTimezone(timezone)}</span></td>
       <td className="list-what">
-        <em>{cars}</em>
+        <em>{cars}</em><br/>
         {organiser}
       </td>
       <td className="list-track">{tracks.longNameByKey(track)}</td>
       <td className="list-duration">{duration} min</td>
       <td className="list-link"><a href={url} target="_blank" rel="nofollow noopener noreferrer">GO</a></td>
-      <td>Edit - Delete</td>
+      <td><Link to={`/race-control/edit-race?_id=` + id}>Edit</Link> - Delete</td>
     </tr>
   )
 }

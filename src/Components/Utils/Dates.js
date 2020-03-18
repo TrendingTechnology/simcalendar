@@ -56,10 +56,14 @@ class Dates {
   }
 
   getTimezone(offset) {
-    if (offset === 0) {
+    if (offset === 0 || offset === "0") {
       return 'GMT'
     }
-    else {
+    else if (offset > 0) {
+      let tz = Math.round(offset/60)
+      return 'GMT+' + tz
+    }
+    else if (offset < 0) {
       let tz = Math.round(offset/60)
       return 'GMT' + tz
     }

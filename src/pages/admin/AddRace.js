@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import sims from '../../constants/sims.json'
+// import sims from '../../constants/sims.json'
 import tracks from '../../constants/tracks.json'
 import Tracks from '../../Components/Utils/Tracks'
-import Sims from '../../Components/Utils/Sims'
-import AddRaceForm from '../../Components/AddRaceForm'
+// import Sims from '../../Components/Utils/Sims'
+import AddRaceForm from './components/AddRaceForm'
 import Menu from './components/Menu'
 
 class AddRace extends Component {
   state = {
     tracks: new Tracks(tracks),
-    sims: new Sims(sims.sims),
+    // sims: new Sims(sims.sims),
   }
 
   render() {
