@@ -12,9 +12,7 @@ const ValidationSchema = Yup.object().shape({
     .required("Required"),
   url: Yup.string().url("Must be a valid URL").required("Required"),
   cars: Yup.string().required("Required"),
-  duration: Yup.number()
-    .integer()
-    .positive(),
+  duration: Yup.string().required("required"),
   timezone: Yup.number().integer()
 });
 
@@ -198,9 +196,9 @@ const AddRaceForm = (props) => {
           </li>
           <li>
             <label htmlFor="duration">Race duration</label>
-            <p className="form-description">Just the race. If it's more than one, enter the total amount of time for all races. Do not add qualifying or practice time. </p>
+            <p className="form-description">Include all races, like 3x15. Do not add qualifying or practice time. </p>
             <input
-              type="number"
+              type="text"
               id="duration"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -210,8 +208,6 @@ const AddRaceForm = (props) => {
             <Error touched={touched.duration} message={errors.duration} />
           </li>
         </ul>
-
-        { /* status ? <Success /> : null */ }
 
         <input type="submit" disabled={isSubmitting} value="Add race" />
         </form>
