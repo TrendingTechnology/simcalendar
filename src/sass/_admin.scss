@@ -18,11 +18,17 @@
     width: 100%;
     border-spacing: 0 $baseline/2;
     border-collapse: inherit;
-    // color: $main;
   }
   th, td {
     font-size: 1.4rem;
     padding: $baseline/2 $baseline/4;
     font-family: $systemstack;
+  }
+}
+
+tr.race-deleted {
+  td {
+    text-decoration: line-through;
+    color: $colour-active;
   }
 }

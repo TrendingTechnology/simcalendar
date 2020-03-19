@@ -2,12 +2,13 @@ import React from 'react';
 import Dates from '../../../Components/Utils/Dates'
 import { Link } from 'react-router-dom'
 
-export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone}) {
+export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone, deleteRace, deleted}) {
+
   const newDate = new Date(date)
   const dateUtils = new Dates()
 
   return (
-    <tr key={Math.random()}>
+    <tr key={Math.random()} className={deleted ? "race-deleted": null}>
       <td className="list-sim">{sim}</td>
       <td className="list-date">{dateUtils.getDay(newDate.getDay())} {newDate.getDate()} {dateUtils.getMonth(newDate.getMonth())}
       </td>
@@ -19,7 +20,10 @@ export default function TableRow({organiser, cars, url, sim, id, track, tracks, 
       <td className="list-track">{tracks.longNameByKey(track)}</td>
       <td className="list-duration">{duration} min</td>
       <td className="list-link"><a href={url} target="_blank" rel="nofollow noopener noreferrer">GO</a></td>
-      <td><Link to={`/race-control/edit-race?_id=` + id}>Edit</Link> - Delete</td>
+      <td>
+        <Link to={`/race-control/edit-race?_id=` + id}>Edit</Link> -
+        <button onClick={() => deleteRace(id)}>Delete</button>
+      </td>
     </tr>
   )
 }

@@ -6,6 +6,8 @@ import Tracks from '../../Components/Utils/Tracks'
 import Sims from '../../Components/Utils/Sims'
 import Menu from './components/Menu'
 import TableRow from './components/TableRow'
+
+
 class AdminIndex extends Component {
 
   state = {
@@ -48,8 +50,22 @@ class AdminIndex extends Component {
     });
   }
 
+  deleteRace(id) {
+    firebase.database().ref(`/races/${id}/`).update({
+      deleted: true
+    }, function(error) {
+      if (error) {
+        alert("Well that was fucked");
+      } else {
+        alert("deleted");
+      }
+    });
+  }
+
   render() {
     let {races, tracks, sims} = this.state
+
+    console.log(races);
 
     return (
       <div className="wrapper">
@@ -86,6 +102,8 @@ class AdminIndex extends Component {
                         duration={race[1].duration}
                         time={race[1].time}
                         timezone={race[1].timezone}
+                        deleteRace={this.deleteRace}
+                        deleted={race[1].deleted}
                       />
                     ))}
                   </tbody>

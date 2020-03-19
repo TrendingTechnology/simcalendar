@@ -94,6 +94,13 @@
         text-decoration: none;
       }
     }
+
+    &.race-deleted {
+      td {
+        text-decoration: line-through;
+        color: $colour-active;
+      }
+    }
   }
 
 }

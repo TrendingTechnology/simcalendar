@@ -19,18 +19,12 @@ class Home extends Component {
 
   filterOldRaces = (data) => {
       let today = new Date().setHours(0,0,0,0)
-      const futureRaces = []
       const races = Object.entries(data.races)
-      races.filter((race) => {
-        if (today - race[1].date <= 0) {
-          futureRaces.push(race)
-        }
-      })
-
-      futureRaces.sort((a, b) => parseFloat(a[1].date) - parseFloat(b[1].date));
-
+      let futureRaces = races.filter((race) => { return today - race[1].date <= 0 })
+      let currentRaces = futureRaces.filter((race) => { return race[1].deleted !== true })
+      currentRaces.sort((a, b) => parseFloat(a[1].date) - parseFloat(b[1].date));
       this.setState({
-        races: futureRaces,
+        races: currentRaces,
         dataReady: true
       }, () => {
         console.log("Data is ready 🏁");

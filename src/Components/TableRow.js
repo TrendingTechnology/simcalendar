@@ -1,7 +1,7 @@
 import React from 'react';
 import Dates from './Utils/Dates'
 
-export default function TableRow({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone}) {
+export default function TableRow({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone, deleted}) {
   const newDate = new Date(date)
   const dateUtils = new Dates()
 
