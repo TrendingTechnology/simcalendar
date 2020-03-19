@@ -62,6 +62,18 @@ class AdminIndex extends Component {
     });
   }
 
+  restoreRace(id) {
+    firebase.database().ref(`/races/${id}/`).update({
+      deleted: false
+    }, function(error) {
+      if (error) {
+        alert("Well that was fucked");
+      } else {
+        alert("restored");
+      }
+    });
+  }
+
   render() {
     let {races, tracks, sims} = this.state
 
@@ -103,6 +115,7 @@ class AdminIndex extends Component {
                         time={race[1].time}
                         timezone={race[1].timezone}
                         deleteRace={this.deleteRace}
+                        restoreRace={this.restoreRace}
                         deleted={race[1].deleted}
                       />
                     ))}

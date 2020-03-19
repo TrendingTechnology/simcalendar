@@ -2,7 +2,7 @@ import React from 'react';
 import Dates from '../../../Components/Utils/Dates'
 import { Link } from 'react-router-dom'
 
-export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone, deleteRace, deleted}) {
+export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone, deleteRace,restoreRace, deleted}) {
 
   const newDate = new Date(date)
   const dateUtils = new Dates()
@@ -22,7 +22,11 @@ export default function TableRow({organiser, cars, url, sim, id, track, tracks, 
       <td className="list-link"><a href={url} target="_blank" rel="nofollow noopener noreferrer">GO</a></td>
       <td>
         <Link to={`/race-control/edit-race?_id=` + id}>Edit</Link> -
-        <button onClick={() => deleteRace(id)}>Delete</button>
+        { deleted ? (
+          <button onClick={() => restoreRace(id)}>Restore</button>
+        ) : (
+          <button onClick={() => deleteRace(id)}>Delete</button>
+        )}
       </td>
     </tr>
   )
