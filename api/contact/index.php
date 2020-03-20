@@ -13,16 +13,26 @@ if( empty($_POST['firstName']) && empty($_POST['email']) ) {
            "sent" => false,
            "message" => $SendMailEmptyerrorMessage
         ]
-    ); 
+    );
     exit();
 }
-
+if ($_POST['organiser'] === true) {
+  $organiser = 'yes';
+}
 if ($_POST){
     //@important: Please change this before using
+
     http_response_code(200);
-    $subject = 'Contact from: ' . $_POST['firstName'];
+    $subject = 'Contact from: ' . $_POST['name'];
     $from = $_POST['email'];
-    $message = $_POST['msg'];       
+    $message = "
+      Name: {$_POST['name']}
+      email: {$_POST['email']}
+      URL: {$_POST['url']}
+      sim: {$_POST['sim']}
+      organiser: {$organiser}
+      
+      message: {$_POST['message']}";
     //Actual sending email
     $sendEmail = new Sender($adminEmail, $from, $subject, $message);
     $sendEmail->send();

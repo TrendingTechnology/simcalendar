@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import Error from './admin/components/Error'
 import axios from 'axios'
 
-const API_PATH = "http://localhost:8888/simcalendar/api/contact/"
+const API_PATH = "https://driveracewin.com/api/contact/index.php"
 
 const MessageSent = () => (
   <>
@@ -45,8 +45,9 @@ const ContactForm = (props) => {
               name: '',
               url: '',
               email: '',
+              sim: '',
               message: '',
-              organiser: ''
+              organiser: false
             }}
             validationSchema={ValidationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
