@@ -19,6 +19,13 @@ import {AuthProvider} from './pages/admin/Auth'
 import PrivateRoute from './pages/admin/PrivateRoute'
 import Footer from './Components/Footer'
 import ContactForm from './pages/ContactForm'
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-MK8VHKD'
+}
+
+TagManager.initialize(tagManagerArgs)
 
 if(!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
