@@ -13,7 +13,8 @@ const ValidationSchema = Yup.object().shape({
   url: Yup.string().url("Must be a valid URL").required("Required"),
   cars: Yup.string().required("Required"),
   duration: Yup.string().required("required"),
-  timezone: Yup.number().integer()
+  timezone: Yup.number().integer(),
+  series: Yup.boolean()
 });
 
 const AddRaceForm = (props) => {
@@ -36,12 +37,13 @@ const AddRaceForm = (props) => {
           time: '20:45',
           timezone: new Date().getTimezoneOffset(),
           date: new Date().toISOString().split('T')[0],
+          series: ''
         }}
         validationSchema={ValidationSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
           setTimeout(() => {
-            resetForm();
+            if (!values.series) { resetForm() }
             let newRaceKey = firebase.database().ref('/races/').push().key
             firebase.database().ref(`/races/${newRaceKey}/`).set({
               name: values.name,
@@ -206,6 +208,15 @@ const AddRaceForm = (props) => {
               className={touched.duration && errors.duration ? "has-error" : null}
             />
             <Error touched={touched.duration} message={errors.duration} />
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="series"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.series}
+            /> <label htmlFor="series" className="label-radio">Add multiple races</label>
           </li>
         </ul>
 
