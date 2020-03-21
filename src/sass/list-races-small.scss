@@ -6,13 +6,14 @@
   }
   li {
     background: $colour-gray-300;
+    margin-bottom: $baseline;
     display: grid;
-    grid-template-columns: 63px 1fr 93px;
+    grid-template-columns: 63px 1fr 103px;
     grid-template-rows: 56px 1fr 30px;
     grid-template-areas:
       "logo date time"
       "what what what"
-      "organiser organiser organiser";
+      "organiser organiser link";
 
       div {
         padding: $baseline/2;
@@ -35,26 +36,34 @@
   .list-date {
     grid-area: date;
     background: $colour-gray-200;
+    font-size: 1.4rem;
 
     em {
       font-style: normal;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
-      padding-left: $baseline/2;
+      padding-left: $baseline/4;
       padding-right: $baseline/4;
+      padding-bottom: 2px;
     }
 
     span.month {
       color: #666;
       font-weight: 300;
-      font-size: 2rem;
+      font-size: 1.8rem;
+      padding-bottom: 2px;
     }
   }
 
   .list-time {
     grid-area: time;
     background: $colour-gray-200;
-    font-size: 2rem;
+    font-size: 1.8rem;
+
+    span {
+      font-size: 1.3rem;
+      padding: 3px 0 0 4px;
+    }
   }
 
   .list-what {
@@ -71,5 +80,13 @@
     font-size: 1.6rem;
     font-weight: 300;
     padding: 0 $baseline/2 $baseline/2;
+  }
+
+  .list-link {
+    grid-area: link;
+    background: $colour-active;
+    color: $main;
+    text-align: center;
+    font-weight: 500;
   }
 }

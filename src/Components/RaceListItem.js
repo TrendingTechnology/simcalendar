@@ -6,7 +6,7 @@ export default function RaceListItem({organiser, cars, url, sim, sims, track, tr
   const dateUtils = new Dates()
 
   return (
-    <a href={url} target="_blank" rel="nofollow noopener noreferrer">
+    <a href={url} rel="nofollow noopener noreferrer">
     <li key={Math.random()}>
       <div className="list-sim">
         <img src={sims.logoByKey(sim)} alt={sims.longNameByKey(sim)} />
@@ -23,6 +23,7 @@ export default function RaceListItem({organiser, cars, url, sim, sims, track, tr
         <p>{duration} min</p>
       </div>
       <div className="list-organiser">{organiser}</div>
+      <div className="list-link"><a href={url} rel="nofollow noopener noreferrer">GO</a></div>
     </li></a>
   )
 }

@@ -16,6 +16,10 @@ html, body {
 
 .wrapper {
   padding: $baseline;
+
+  @media all and (max-width: $screen-small) {
+    padding: $baseline $baseline/2;
+  }
 }
 
 .list-races {
@@ -38,6 +42,10 @@ html, body {
     margin-bottom: $baseline*2;
   }
 
+  input {
+    height: auto;
+  }
+
   @media all and (max-width: $screen-almostLarge) {
     width: auto;
     margin-right: 0;
@@ -49,11 +57,25 @@ html, body {
       flex-basis: 300px;
       flex-grow: 0;
       margin-bottom: 0;
+      margin-bottom: $baseline/2;
     }
 
     h3 {
       display: block;
       flex-basis: 100%;
+    }
+  }
+
+  @media all and (max-width: $screen-small) {
+    > div {
+      flex-basis: 100%;
+      margin-bottom: $baseline/2;
+    }
+
+
+
+    .📦w_240px {
+      width: 100%;
     }
   }
 
@@ -75,18 +97,26 @@ html, body {
   justify-content: center;
   align-items: center;
 
+  @media all and (max-width: $screen-small) {
+    height: 100px;
+  }
+
   h2 {
     margin: 0;
     color: $main;
     font-size: 5rem;
     font-weight: 300;
+
+    @media all and (max-width: $screen-small) {
+      font-size: 3.5rem;
+    }
   }
 }
 
 .home-contact {
   background: white;
   p {
-    padding: $baseline/2 0;
+    padding: $baseline/2;
     color: $main;
     font-family: $systemstack;
     text-align: center;
@@ -94,6 +124,10 @@ html, body {
 
     a {
 
+    }
+
+    @media all and (max-width: $screen-small) {
+      padding: $baseline/2 $baseline;
     }
   }
 }
