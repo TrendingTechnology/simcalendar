@@ -185,6 +185,9 @@
    "blackhawk_farms": {
       "name": "Blackhawk Farms"
    },
+   "blackwood": {
+     "name": "Blackwood"
+   },
    "boston": {
       "name": "Boston"
    },
@@ -347,6 +350,9 @@
    "daytona": {
       "name": "Daytona"
    },
+   "deutschlandring": {
+     "name": "Deutschlandring"
+   },
    "detroit_belle_isle": {
       "name": "Detroit Belle Isle"
    },
@@ -398,6 +404,9 @@
    "falkenberg": {
       "name": "Falkenberg"
    },
+   "feldberg_ring": {
+     "name": "Feldberg ring"
+   },
    "fort_grozny_autodrom": {
       "name": "Fort Grozny Autodrom"
    },
@@ -448,6 +457,9 @@
    },
    "hanoi_street_circuit": {
       "name": "Hanoi Street Circuit"
+   },
+   "haute_saintonge": {
+     "name": "Haute Saintonge"
    },
    "heartland_park_topeka": {
       "name": "Heartland Park Topeka"

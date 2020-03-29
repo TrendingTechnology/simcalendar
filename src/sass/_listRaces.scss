@@ -1,3 +1,20 @@
+.current-tz {
+  font-family: $systemstack;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  text-align: right;
+
+  @media all and (max-width: $screen-small) {
+    margin-bottom: $baseline;
+  }
+
+  em {
+    font-style: normal;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
 .races {
   table {
     width: 100%;
@@ -43,7 +60,7 @@
 
         &.month {
           font-weight: 300;
-          color: #ccc;
+          color: #a5a5a5;
         }
       }
       em {

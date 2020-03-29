@@ -2,9 +2,10 @@ import React from 'react';
 import Dates from '../../../Components/Utils/Dates'
 import { Link } from 'react-router-dom'
 
-export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone, deleteRace,restoreRace, deleted}) {
+export default function TableRow({organiser, cars, url, sim, id, track, tracks, duration, time, date, timezone, deleteRace,restoreRace, deleted, timestamp}) {
 
   const newDate = new Date(date)
+  const ts = new Date(timestamp)
   const dateUtils = new Dates()
 
   return (
@@ -13,6 +14,7 @@ export default function TableRow({organiser, cars, url, sim, id, track, tracks, 
       <td className="list-date">{dateUtils.getDay(newDate.getDay())} {newDate.getDate()} {dateUtils.getMonth(newDate.getMonth())}
       </td>
       <td className="list-time">{time} <span>{dateUtils.getTimezone(timezone)}</span></td>
+      <td>{ts.toLocaleString()}</td>
       <td className="list-what">
         <em>{cars}</em><br/>
         {organiser}

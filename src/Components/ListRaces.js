@@ -4,6 +4,8 @@ import TableRow from './TableRow'
 import RaceListItem from './RaceListItem'
 import {useMediaQuery} from 'react-responsive'
 
+const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 const Large = ({ children }) => {
   const isLarge = useMediaQuery({ minWidth: 700 })
   return isLarge ? children : null
@@ -20,6 +22,7 @@ class ListRaces extends Component {
     selectedSims: this.props.sims.keysArray,
     tracks: this.props.tracks,
     selectedTracks: this.props.tracks.keysArray,
+    localTime: true
   }
 
   filterTracks = (longName) => {
@@ -41,8 +44,16 @@ class ListRaces extends Component {
     }
   }
 
+  setLocalTime = () => {
+    this.setState({localTime: true})
+  }
+
+  setDefaultTime = () => {
+    this.setState({localTime: null})
+  }
+
   render() {
-    let {races, tracks, sims, selectedTracks, selectedSims} = this.state
+    let {races, tracks, sims, selectedTracks, selectedSims, localTime} = this.state
 
     const comboBoxTrackList = tracks.longNamesArray
     comboBoxTrackList.unshift('All tracks')
@@ -84,6 +95,14 @@ class ListRaces extends Component {
       </div>
       <Large>
         <div className="races">
+          {
+            localTime ? (
+              <p className="current-tz">{tz} times. <em onClick={() => this.setDefaultTime()}>Change to organiser time</em>.</p>
+            ) : (
+              <p className="current-tz">Organiser set time. <em onClick={() => this.setLocalTime()}>Change to local time</em>.</p>
+            )
+          }
+
           <table>
             <thead>
               <tr>
@@ -111,6 +130,9 @@ class ListRaces extends Component {
                   time={race[1].time}
                   timezone={race[1].timezone}
                   key={Math.random()}
+                  localTime={this.state.localTime}
+                  tz={tz}
+                  timestamp={race[1].timestamp}
                 />
               ))}
             </tbody>
@@ -118,6 +140,13 @@ class ListRaces extends Component {
           </div>
         </Large>
         <Small>
+          {
+            localTime ? (
+              <p className="current-tz">{tz} times. <em onClick={() => this.setDefaultTime()}>Change to organiser time</em>.</p>
+            ) : (
+              <p className="current-tz">Organiser set time. <em onClick={() => this.setLocalTime()}>Change to local time</em>.</p>
+            )
+          }
           <ul className="races-small">
           {races.map(race => (
             <RaceListItem
@@ -132,7 +161,10 @@ class ListRaces extends Component {
               duration={race[1].duration}
               time={race[1].time}
               timezone={race[1].timezone}
+              localTime={this.state.localTime}
               key={Math.random()}
+              tz={tz}
+              timestamp={race[1].timestamp}
             />
           ))}
           </ul>

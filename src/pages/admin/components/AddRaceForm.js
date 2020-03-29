@@ -44,6 +44,15 @@ const AddRaceForm = (props) => {
           setSubmitting(false);
           setTimeout(() => {
             if (!values.series) { resetForm() }
+            let time = values.time.split(":");
+            let ts = new Date(values.date);
+
+            ts = ts.setHours(time[0])
+            ts = new Date(ts)
+            ts = ts.setMinutes(time[1])
+            ts = new Date(ts)
+            ts = ts.getTime() + ts.getTimezoneOffset()*values.timezone*1000
+
             let newRaceKey = firebase.database().ref('/races/').push().key
             firebase.database().ref(`/races/${newRaceKey}/`).set({
               name: values.name,
@@ -55,7 +64,8 @@ const AddRaceForm = (props) => {
               date: new Date(values.date).getTime(),
               time: values.time,
               timezone: values.timezone,
-              duration: values.duration
+              duration: values.duration,
+              timestamp: ts
             }, function(error) {
               if (error) {
                 alert("Well that was fucked");

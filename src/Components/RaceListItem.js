@@ -1,8 +1,9 @@
 import React from 'react';
 import Dates from './Utils/Dates'
 
-export default function RaceListItem({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone}) {
-  const newDate = new Date(date)
+export default function RaceListItem({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone, localTime, timestamp}) {
+  const newDate = new Date(timestamp)
+  const gmtDate = new Date(date)
   const dateUtils = new Dates()
 
   return (
@@ -12,11 +13,33 @@ export default function RaceListItem({organiser, cars, url, sim, sims, track, tr
         <img src={sims.logoByKey(sim)} alt={sims.longNameByKey(sim)} />
       </div>
       <div className="list-date">
-        <span>{dateUtils.getDay(newDate.getDay())}</span>
-        <em>{newDate.getDate()}</em>
-        <span className="month">{dateUtils.getMonth(newDate.getMonth())}</span>
+        { !localTime ? (
+          <>
+          <span>{dateUtils.getDay(gmtDate.getDay())}</span>
+          <em>{gmtDate.getDate()}</em>
+          <span className="month">{dateUtils.getMonth(gmtDate.getMonth())}</span>
+        </> ) : (
+          <>
+            <span>{dateUtils.getDay(newDate.getDay())}</span>
+            <em>{newDate.getDate()}</em>
+            <span className="month">{dateUtils.getMonth(newDate.getMonth())}</span>
+          </>
+         )
+        }
+
       </div>
-      <div className="list-time">{time} <span>{dateUtils.getTimezone(timezone)}</span></div>
+      <div className="list-time">
+        { !localTime ? (
+          <>
+            {time} <span>{dateUtils.getTimezone(timezone)}</span>
+          </>
+        ) : (
+          <>
+            {dateUtils.getHours(newDate.getHours())}:{dateUtils.getMinutes(newDate.getMinutes())}
+          </>
+        )}
+
+      </div>
       <div className="list-what">
         <p>{cars}</p>
         <p>{tracks.longNameByKey(track)}</p>

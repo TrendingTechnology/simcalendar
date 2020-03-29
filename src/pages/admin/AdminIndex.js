@@ -75,9 +75,7 @@ class AdminIndex extends Component {
   }
 
   render() {
-    let {races, tracks, sims} = this.state
-
-    console.log(races);
+    let {races} = this.state
 
     return (
       <div className="wrapper">
@@ -92,6 +90,7 @@ class AdminIndex extends Component {
                       <th>Sim</th>
                       <th>When</th>
                       <th>Start time</th>
+                      <th>Timestamp</th>
                       <th>Event</th>
                       <th>Track</th>
                       <th>Race duration</th>
@@ -117,6 +116,7 @@ class AdminIndex extends Component {
                         deleteRace={this.deleteRace}
                         restoreRace={this.restoreRace}
                         deleted={race[1].deleted}
+                        timestamp={race[1].timestamp}
                       />
                     ))}
                   </tbody>

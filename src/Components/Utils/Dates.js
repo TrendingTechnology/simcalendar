@@ -1,7 +1,4 @@
 class Dates {
-  // constructor(date) {
-  //   this.date = date
-  // }
 
   getDay(day) {
     switch (day) {
@@ -66,6 +63,22 @@ class Dates {
     else if (offset < 0) {
       let tz = Math.round(offset/60)
       return 'GMT' + tz
+    }
+  }
+
+  getHours(hour) {
+    if (hour < 10) {
+      return '0' + hour
+    } else {
+      return hour
+    }
+  }
+
+  getMinutes(minute) {
+    if (minute < 10) {
+      return '0' + minute
+    } else {
+      return minute
     }
   }
 }
