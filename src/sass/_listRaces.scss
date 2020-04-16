@@ -38,6 +38,17 @@
       padding: $baseline/2;
     }
 
+    td.table-header {
+      background: none;
+      padding: $baseline*2 0 0;
+      color: $colour-base;
+      font-size: 3rem;
+    }
+
+    td.first-header {
+      padding-top: 0;
+    }
+
     .list-sim {
       background: white;
       // clip-path: polygon(0 0, 100% 0, 79% 100%, 0% 100%);

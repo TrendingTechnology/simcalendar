@@ -23,6 +23,13 @@
 
   }
 
+  li.list-header {
+    background: none;
+    color: $colour-base;
+    font-size: 3rem;
+    display: block;
+  }
+
   .list-sim {
     grid-area: logo;
     background: #fff;

@@ -3,7 +3,9 @@ import { Combobox } from 'evergreen-ui'
 import TableRow from './TableRow'
 import RaceListItem from './RaceListItem'
 import {useMediaQuery} from 'react-responsive'
+import Dates from './Utils/Dates'
 
+const dateUtils = new Dates()
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const Large = ({ children }) => {
@@ -54,6 +56,7 @@ class ListRaces extends Component {
 
   render() {
     let {races, tracks, sims, selectedTracks, selectedSims, localTime} = this.state
+    let currentMonth = false
 
     const comboBoxTrackList = tracks.longNamesArray
     comboBoxTrackList.unshift('All tracks')
@@ -105,7 +108,7 @@ class ListRaces extends Component {
 
           <table>
             <thead>
-              <tr>
+              <tr  key={Math.random()}>
                 <th>Sim</th>
                 <th>When</th>
                 <th>Start time</th>
@@ -116,25 +119,38 @@ class ListRaces extends Component {
               </tr>
             </thead>
             <tbody>
-              {races.map(race => (
-                <TableRow
-                  organiser={race[1].organiser}
-                  sim={race[1].sim}
-                  sims={this.state.sims}
-                  track={race[1].track}
-                  tracks={this.state.tracks}
-                  date={race[1].date}
-                  url={race[1].url}
-                  cars={race[1].cars}
-                  duration={race[1].duration}
-                  time={race[1].time}
-                  timezone={race[1].timezone}
-                  key={Math.random()}
-                  localTime={this.state.localTime}
-                  tz={tz}
-                  timestamp={race[1].timestamp}
-                />
-              ))}
+              {races.map(function listRaces(race) {
+                const gmtDate = new Date(race[1].date)
+
+                switch (currentMonth) {
+                  case false:
+                    currentMonth = gmtDate.getMonth()
+                    return <tr key={Math.random()}><td colSpan="7" className="table-header first-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</td></tr>
+                  case gmtDate.getMonth():
+                    return (
+                      <TableRow
+                        organiser={race[1].organiser}
+                        sim={race[1].sim}
+                        sims={this.sims}
+                        track={race[1].track}
+                        tracks={this.tracks}
+                        date={race[1].date}
+                        url={race[1].url}
+                        cars={race[1].cars}
+                        duration={race[1].duration}
+                        time={race[1].time}
+                        timezone={race[1].timezone}
+                        key={Math.random()}
+                        localTime={this.localTime}
+                        tz={tz}
+                        timestamp={race[1].timestamp}
+                      />
+                    )
+                  default:
+                    currentMonth = gmtDate.getMonth()
+                    return <tr key={Math.random()}><td colSpan="7" className="table-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</td></tr>
+                }
+              }, this.state)}
             </tbody>
           </table>
           </div>
@@ -148,25 +164,39 @@ class ListRaces extends Component {
             )
           }
           <ul className="races-small">
-          {races.map(race => (
-            <RaceListItem
-              organiser={race[1].organiser}
-              sim={race[1].sim}
-              sims={this.state.sims}
-              track={race[1].track}
-              tracks={this.state.tracks}
-              date={race[1].date}
-              url={race[1].url}
-              cars={race[1].cars}
-              duration={race[1].duration}
-              time={race[1].time}
-              timezone={race[1].timezone}
-              localTime={this.state.localTime}
-              key={Math.random()}
-              tz={tz}
-              timestamp={race[1].timestamp}
-            />
-          ))}
+            {races.map(function listRacesSmall(race) {
+              const gmtDate = new Date(race[1].date)
+
+              switch (currentMonth) {
+                case false:
+                  currentMonth = gmtDate.getMonth()
+                  return <li key={Math.random()} className="list-header first-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</li>
+                case gmtDate.getMonth():
+                  return (
+                    <RaceListItem
+                      organiser={race[1].organiser}
+                      sim={race[1].sim}
+                      sims={this.sims}
+                      track={race[1].track}
+                      tracks={this.tracks}
+                      date={race[1].date}
+                      url={race[1].url}
+                      cars={race[1].cars}
+                      duration={race[1].duration}
+                      time={race[1].time}
+                      timezone={race[1].timezone}
+                      localTime={this.localTime}
+                      key={Math.random()}
+                      tz={tz}
+                      timestamp={race[1].timestamp}
+                    />
+                  )
+                default:
+                  currentMonth = gmtDate.getMonth()
+                  return <li key={Math.random()} className="list-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</li>
+              }
+            }, this.state)}
+
           </ul>
         </Small>
       </div>
