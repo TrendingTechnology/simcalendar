@@ -8,7 +8,7 @@
       "name": "Assetto Corsa",
       "logo": "/sim-logos/ac-logo.png"
     },
-    "acc": {
+    "assettocc": {
       "name": "Assetto Corsa Competizione",
       "logo": "/sim-logos/acc-logo.jpg"
     },
@@ -24,7 +24,7 @@
       "name": "Automobilista",
       "logo": "/sim-logos/automobilista.png"
     },
-    "automo2": {
+    "am2": {
       "name": "Automobilista 2",
       "logo": "/sim-logos/automobilista2-logo.png"
     },
@@ -35,6 +35,10 @@
     "gtsport": {
       "name": "GT Sport",
       "logo": "/sim-logos/gtsport-logo.jpg"
+    },
+    "f12019": {
+      "name": "F1 2019",
+      "logo": "/sim-logos/f12019.png"
     }
   }
 }

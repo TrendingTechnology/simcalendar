@@ -156,13 +156,14 @@ const AddRaceForm = (props) => {
             >
               <option key="none" value="none">Please select</option>
               <option key="ac" value="ac">Assetto Corsa</option>
-              <option key="acc" value="acc">Assetto Corsa Competizione</option>
+              <option key="assettocc" value="assettocc">Assetto Corsa Competizione</option>
               <option key="rf2" value="rf2">rFactor 2</option>
               <option key="rre" value="rre">Raceroom</option>
               <option key="ir" value="ir">iRacing</option>
               <option key="automo" value="automo">Automobilista</option>
-              <option key="automo2" value="automo2">Automobilista 2</option>
+              <option key="am2" value="am2">Automobilista 2</option>
               <option key="pc2" value="pc2">Project Cars 2</option>
+              <option key="f12019" value="f12019">F1 2019</option>
             </select>
           </li>
           <li>

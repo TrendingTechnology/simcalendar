@@ -9,6 +9,9 @@ import tracks from '../constants/tracks.json'
 import Tracks from '../Components/Utils/Tracks'
 import Sims from '../Components/Utils/Sims'
 
+// console.log(process.env.REACT_APP_API_KEY);
+// console.log(process.env.NODE_ENV);
+
 class Home extends Component {
   state = {
     tracks: new Tracks(tracks),
