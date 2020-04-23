@@ -42,7 +42,7 @@ export default function TableRow({organiser, cars, url, sim, sims, track, tracks
       </td>
       <td className="list-track">{tracks.longNameByKey(track)}</td>
       <td className="list-duration">{duration} min</td>
-      <td className="list-link"><a href={url} rel="nofollow noopener noreferrer">GO</a></td>
+      <td className="list-link"><a className="go-link" href={url} rel="nofollow noopener noreferrer">GO</a></td>
     </tr>
   )
 }
