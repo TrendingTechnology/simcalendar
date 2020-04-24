@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import { Combobox } from 'evergreen-ui'
-import TableRow from './TableRow'
-import RaceListItem from './RaceListItem'
+import TableRow from './Parts/TableRow'
+import RaceListItem from './Parts/RaceListItem'
 import {useMediaQuery} from 'react-responsive'
 import Dates from './Utils/Dates'
+import FiltersSims from './Parts/FiltersSims'
 
 const dateUtils = new Dates()
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const Large = ({ children }) => {
-  const isLarge = useMediaQuery({ minWidth: 700 })
+  const isLarge = useMediaQuery({ minWidth: 1020 })
   return isLarge ? children : null
+}
+const Medium = ({ children }) => {
+  const isMedium = useMediaQuery({ maxWidth: 1019 })
+  return isMedium ? children : null
+}
+
+const MediumSmall = ({ children }) => {
+  const isMediumSmall = useMediaQuery({ minWidth: 700 })
+  return isMediumSmall ? children : null
 }
 const Small = ({ children }) => {
   const isSmall = useMediaQuery({ maxWidth: 699 })
@@ -22,9 +32,11 @@ class ListRaces extends Component {
     races: this.props.data,
     sims: this.props.sims,
     selectedSims: this.props.sims.keysArray,
+    selectedCheckboxSims: ["All sims"],
     tracks: this.props.tracks,
     selectedTracks: this.props.tracks.keysArray,
-    localTime: true
+    localTime: true,
+    filterSims2: null
   }
 
   filterTracks = (longName) => {
@@ -38,12 +50,61 @@ class ListRaces extends Component {
 
   filterSims = (longName) => {
     if (longName === 'All sims' || longName === null) {
-        this.setState({selectedSims: this.props.sims.keysArray})
+        this.setState({
+          selectedSims: this.props.sims.keysArray,
+          selectedCheckboxSims: ["All sims"]
+        })
     } else {
         const selectedSims = this.props.sims.keyByLongName(longName)
-        console.log(selectedSims);
-        this.setState({selectedSims})
+        this.setState({
+          selectedSims,
+          selectedCheckboxSims: [longName]
+        })
     }
+  }
+
+  filterSims2 = (e) => {
+    const longName = e.target.value;
+    const sim = this.props.sims.keyByLongName(longName)
+
+    if (longName === 'All sims' || longName === null) {
+        this.setState({
+          selectedCheckboxSims: ["All sims"],
+          selectedSims: this.props.sims.keysArray
+        })
+    } else if (this.state.selectedCheckboxSims.includes("All sims")) {
+        let ar = []
+        ar.push(sim)
+        this.setState({
+          selectedCheckboxSims: [longName],
+          selectedSims: ar
+        })
+      }
+
+      else if (this.state.selectedSims.includes(sim)) {
+
+        // list of sims without selection
+        let index = this.state.selectedSims.indexOf(sim)
+        let newList = this.state.selectedSims
+        newList.splice(index,1)
+
+        // list of simsboxes without selection
+        let checkIndex = this.state.selectedCheckboxSims.indexOf(longName)
+        let newCheckList = this.state.selectedCheckboxSims
+        newCheckList.splice(checkIndex,1)
+
+        this.setState({
+          selectedCheckboxSims: newCheckList,
+          selectedSims: newList
+        })
+      }
+
+     else {
+      this.setState({
+        selectedCheckboxSims: [...this.state.selectedCheckboxSims,longName],
+        selectedSims: [...this.state.selectedSims, sim]
+      })
+     }
   }
 
   setLocalTime = () => {
@@ -52,6 +113,10 @@ class ListRaces extends Component {
 
   setDefaultTime = () => {
     this.setState({localTime: null})
+  }
+
+  componentDidMount() {
+    this.setState({filterSims2: this.filterSims2})
   }
 
   render() {
@@ -76,27 +141,42 @@ class ListRaces extends Component {
     return (
       <div className="list-races">
       <div className="filters">
-        <h3>Filters</h3>
-        <Combobox
-          items={comboBoxSimList}
-          onChange={this.filterSims}
-          placeholder="All sims"
-          autocompleteProps={{
-            // Used for the title in the autocomplete.
-            title: 'Sims'
-          }}
-        />
-        <Combobox
-            items={comboBoxTrackList}
-            onChange={this.filterTracks}
-            placeholder="All tracks"
+        <Large>
+          <h3>Sims</h3>
+          <ul className="filter-sims">
+            {comboBoxSimList.map(function FilterSims(sim) {
+              return <FiltersSims
+                  sim={sim}
+                  filterSims2={this.filterSims2}
+                  checked={this.selectedCheckboxSims}
+                />
+          }, this.state)}
+          </ul>
+
+          <h3>Tracks</h3>
+          <Combobox
+              items={comboBoxTrackList}
+              onChange={this.filterTracks}
+              placeholder="All tracks"
+              autocompleteProps={{
+                // Used for the title in the autocomplete.
+                title: 'Tracks'
+              }}
+            />
+        </Large>
+        <Medium>
+          <Combobox
+            items={comboBoxSimList}
+            onChange={this.filterSims}
+            placeholder="All sims"
             autocompleteProps={{
               // Used for the title in the autocomplete.
-              title: 'Tracks'
+              title: 'Sims'
             }}
           />
+      </Medium>
       </div>
-      <Large>
+      <MediumSmall>
         <div className="races">
           {
             localTime ? (
@@ -154,7 +234,7 @@ class ListRaces extends Component {
             </tbody>
           </table>
           </div>
-        </Large>
+        </MediumSmall>
         <Small>
           {
             localTime ? (

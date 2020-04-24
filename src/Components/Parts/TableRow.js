@@ -1,5 +1,5 @@
 import React from 'react';
-import Dates from './Utils/Dates'
+import Dates from '../Utils/Dates'
 
 export default function TableRow({organiser, cars, url, sim, sims, track, tracks, duration, time, date, timezone, localTime, timestamp}) {
   const newDate = new Date(timestamp)

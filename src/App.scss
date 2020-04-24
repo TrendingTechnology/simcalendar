@@ -46,6 +46,10 @@ html, body {
     height: auto;
   }
 
+  @media all and (min-width: $screen-almostLarge) {
+    margin-top: 38px;
+  }
+
   @media all and (max-width: $screen-almostLarge) {
     width: auto;
     margin-right: 0;
@@ -129,5 +133,14 @@ html, body {
     @media all and (max-width: $screen-small) {
       padding: $baseline/2 $baseline;
     }
+  }
+}
+
+.filter-sims {
+  margin-bottom: $baseline*2;
+
+  li label {
+    font-family: $systemstack;
+    font-weight: normal;
   }
 }
