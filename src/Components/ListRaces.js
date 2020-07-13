@@ -149,6 +149,7 @@ class ListRaces extends Component {
                   sim={sim}
                   filterSims2={this.filterSims2}
                   checked={this.selectedCheckboxSims}
+                  key={sim}
                 />
           }, this.state)}
           </ul>
@@ -188,7 +189,7 @@ class ListRaces extends Component {
 
           <table>
             <thead>
-              <tr  key={Math.random()}>
+              <tr key={Math.random()}>
                 <th>Sim</th>
                 <th>When</th>
                 <th>Start time</th>
@@ -205,7 +206,32 @@ class ListRaces extends Component {
                 switch (currentMonth) {
                   case false:
                     currentMonth = gmtDate.getMonth()
-                    return <tr key={Math.random()}><td colSpan="7" className="table-header first-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</td></tr>
+                    return (
+                      <>
+                      <tr key={Math.random()}>
+                        <td colSpan="7" className="table-header first-header">
+                          {dateUtils.getMonthLong(gmtDate.getMonth())}
+                        </td>
+                      </tr>
+                      <TableRow
+                        organiser={race[1].organiser}
+                        sim={race[1].sim}
+                        sims={this.sims}
+                        track={race[1].track}
+                        tracks={this.tracks}
+                        date={race[1].date}
+                        url={race[1].url}
+                        cars={race[1].cars}
+                        duration={race[1].duration}
+                        time={race[1].time}
+                        timezone={race[1].timezone}
+                        key={Math.random()}
+                        localTime={this.localTime}
+                        tz={tz}
+                        timestamp={race[1].timestamp}
+                      />
+                    </>
+                    )
                   case gmtDate.getMonth():
                     return (
                       <TableRow
@@ -228,7 +254,32 @@ class ListRaces extends Component {
                     )
                   default:
                     currentMonth = gmtDate.getMonth()
-                    return <tr key={Math.random()}><td colSpan="7" className="table-header">{dateUtils.getMonthLong(gmtDate.getMonth())}</td></tr>
+                    return (
+                      <>
+                        <tr key={Math.random()}>
+                          <td colSpan="7" className="table-header">
+                            {dateUtils.getMonthLong(gmtDate.getMonth())}
+                          </td>
+                        </tr>
+                        <TableRow
+                          organiser={race[1].organiser}
+                          sim={race[1].sim}
+                          sims={this.sims}
+                          track={race[1].track}
+                          tracks={this.tracks}
+                          date={race[1].date}
+                          url={race[1].url}
+                          cars={race[1].cars}
+                          duration={race[1].duration}
+                          time={race[1].time}
+                          timezone={race[1].timezone}
+                          key={Math.random()}
+                          localTime={this.localTime}
+                          tz={tz}
+                          timestamp={race[1].timestamp}
+                        />
+                      </>
+                    )
                 }
               }, this.state)}
             </tbody>
