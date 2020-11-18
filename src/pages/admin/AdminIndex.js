@@ -20,7 +20,7 @@ class AdminIndex extends Component {
   filterOldRaces = (data) => {
       let today = new Date().setHours(0,0,0,0)
       const futureRaces = []
-      const races = Object.entries(data.races)
+      const races = Object.entries(data)
       races.filter((race) => {
         if (today - race[1].date <= 0) {
           futureRaces.push(race)
@@ -40,7 +40,7 @@ class AdminIndex extends Component {
   componentDidMount() {
     // get the races
     let that = this
-    firebase.database().ref('/').on('value', function(snapshot) {
+    firebase.database().ref('/races/').on('value', function(snapshot) {
       // check if there are any races
       if (!snapshot.val()) {
         console.log("there is no data!!! 😱");

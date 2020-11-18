@@ -19,7 +19,7 @@ class Home extends Component {
 
   filterOldRaces = (data) => {
       let today = new Date().setHours(0,0,0,0)
-      const races = Object.entries(data.races)
+      const races = Object.entries(data)
       let futureRaces = races.filter((race) => { return today - race[1].date <= 0 })
       let currentRaces = futureRaces.filter((race) => { return race[1].deleted !== true })
       currentRaces.sort((a, b) => parseFloat(a[1].date) - parseFloat(b[1].date));
@@ -34,7 +34,7 @@ class Home extends Component {
   componentDidMount() {
     // get the races
     let that = this
-    firebase.database().ref('/').on('value', function(snapshot) {
+    firebase.database().ref('/races/').on('value', function(snapshot) {
       // check if there are any races
       if (!snapshot.val()) {
         console.log("there is no data!!! 😱");
