@@ -34,11 +34,12 @@ You'll need the following, just change `youruid`:
 }
 ```
 
-### Adding new content
+### Adding new content
 
 Once you've created a Firebase user and set up the database rules, visit <yoururl>/race-control/ to log in with the user you have just created, you'll see all your added races (at this point none) and be able to create new ones.
 
-## Scripts
+  
+## Scripts
 
 In the project directory, you can run:
 
@@ -52,7 +53,7 @@ There's a big piece missing in order to make this project successful, and that's
 This could be an API they can call to publish their races, or more likely a league admin area were people can sign up and add their own content. That content will need to be reviewed before getting public in order to avoid spammers.
 
 If you'd like to contribute just get in touch! 
-
-## License
+  
+## License
 
 This repository is licensed under a [Creative Commons Attribution License](https://creativecommons.org/licenses/by/3.0/us/)
